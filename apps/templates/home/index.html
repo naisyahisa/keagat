@@ -649,7 +649,6 @@
   <script src="/static/assets/js/plugins/Chart.extension.js"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
-
     new Chart(ctx, {
       type: "bar",
       data: {
@@ -736,23 +735,23 @@
             borderWidth: 3,
             backgroundColor: gradientStroke1,
             // data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            data: [{% for vaks in vaksin %} {{ vaks.vac_done }}, {% endfor %}],
+            data: [{% for vaks in vaksin %} {{ vaks.percentage }}, {% endfor %}],
             maxBarThickness: 6
 
           },
-          {
-            label: "Vaccine able",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#3A416F",
-            borderWidth: 3,
-            backgroundColor: gradientStroke2,
+          //{
+            //label: "Vaccine able",
+            //tension: 0.4,
+            //borderWidth: 0,
+            //pointRadius: 0,
+            //borderColor: "#3A416F",
+            //borderWidth: 3,
+            //backgroundColor: gradientStroke2,
             // data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-            data: [{% for vaks in vaksin %} {{ vaks.vac_able }}, {% endfor %}],
-            maxBarThickness: 6
+            //data: [{% for vaks in vaksin2018 %} {{ vaks.vac_able }}, {% endfor %}],
+            //maxBarThickness: 6
 
-          },
+          //},
         ],
       },
       options: {
