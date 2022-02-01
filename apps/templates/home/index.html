@@ -648,12 +648,34 @@
   <script src="/static/assets/js/plugins/chartjs.min.js"></script>
   <script src="/static/assets/js/plugins/Chart.extension.js"></script>
   <script>
+    var distr = "{{dist}}"
+    console.log(typeof(distr),distr)
+    var distrr = distr.replace(/&#x27;/g,'');
+    console.log(distrr)
+    let text = distrr;
+    var removeLastFirstChar = text.slice(1, text.length - 1);
+    //console.log('Removing the last character: ', removeLastChar);
+    var distList = removeLastFirstChar.split(", ");
+    console.log(distList)
+
+    var perc = "{{perc}}"
+    console.log(typeof(perc),perc)
+    var percc = perc.replace(/&#x27;/g,'');
+    console.log(percc)
+    let textPerc = percc;
+    var removeLastFirstCharPercc = textPerc.slice(1, textPerc.length - 1);
+    //console.log('Removing the last character: ', removeLastChar);
+    var percList = removeLastFirstCharPercc.split(", ");
+    console.log(percList)
+
+
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
     new Chart(ctx, {
       type: "bar",
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        labels: [{% for vaks in vaksin %} '{{ vaks.district }}', {% endfor %}],
+        labels: distList,
         datasets: [{
           label: "Vaccinated",
           tension: 0.4,
@@ -720,12 +742,11 @@
     gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
     gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
 
-
     new Chart(ctx2, {
       type: "line",
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        labels: [{% for vaks in vaksin %} '{{ vaks.district }}', {% endfor %}],
+        labels: distList,
         datasets: [{
             label: "Vaccined",
             tension: 0.4,
@@ -735,7 +756,7 @@
             borderWidth: 3,
             backgroundColor: gradientStroke1,
             // data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            data: [{% for vaks in vaksin %} {{ vaks.percentage }}, {% endfor %}],
+            data: percList,
             maxBarThickness: 6
 
           },

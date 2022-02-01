@@ -8,11 +8,11 @@ class processData:
         print("#########masuk process data db")
         #[{"id": 1, "district": "Baling"}, {"id": 2, "district": "Sik"}...]
 
-        # district = []
-        # year = []
-        # vacAble = []
-        # vacDone = []
-        # percent = []
+        district = []
+        year = []
+        vacAble = []
+        vacDone = []
+        percent = []
         #iterate objects.all
         vaksin2018 = OrderedDict()
         num = 0
@@ -29,13 +29,13 @@ class processData:
                 'percentage': perc
             }
             # print (context)
-            if x.year == 2018:
+            # if x.year == 2018:
                 # num += 1
                 # no = [num]
                 # dataNum.append(no) 
-                dataList.append(context)
+                # dataList.append(context)
 
-        vaksin2018 = dict.fromkeys(data, dataList)
+        # vaksin2018 = dict.fromkeys(data, dataList)
 
         # print("vaksin2018")
         # print(vaksin2018)
@@ -50,27 +50,28 @@ class processData:
             #     dataSource["data"].append(data)
             
             #main lists
-            # district.append(x.district)
-            # year.append(x.year)
-            # vacDone.append(x.vac_done)
-            # vacAble.append(x.vac_able)
-            # percent.append(perc)
+            district.append(x.district)
+            year.append(x.year)
+            vacDone.append(x.vac_done)
+            vacAble.append(x.vac_able)
+            percent.append(perc)
+        print(percent)    
         # print(percent)
         #before jadi lable data kenaa classify ikut tahun
-        # labellist = []
-        # labeldata = []
-        # labelyear = []
-        # for i in range(len(year)):
-        #     if year[i] == 2018:
-        #         labellist.append(district[i])
-        #         labeldata.append(percent[i])
-        #         labelyear.append(year[i])
-        # print("Labellist:")
-        # print(labellist)
-        # print("Labeldata:")
-        # print(labeldata)
-        # print("Labelyear:")
-        # print(labelyear)
+        labellist = []
+        labeldata = []
+        labelyear = []
+        for i in range(len(year)):
+            if year[i] == 2018:
+                labellist.append(district[i])
+                labeldata.append(percent[i])
+                labelyear.append(year[i])
+        print("Labellist:")
+        print(labellist)
+        print("Labeldata:")
+        print(labeldata)
+        print("Labelyear:")
+        print(labelyear)
         # districtDict = {}
         # for key in labellist:
         # #    labeldata untuk data yg disimpan
@@ -80,4 +81,4 @@ class processData:
         #         break
         # print("##############")
         # print(districtDict)    
-        return vaksin2018
+        return labellist, labeldata, labelyear

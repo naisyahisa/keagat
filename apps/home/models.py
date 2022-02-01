@@ -9,9 +9,10 @@ class Vaksinasi(models.Model):
     year = models.IntegerField()
     vac_able = models.IntegerField()
     vac_done = models.IntegerField()
-
+    
     def __str__(self):
         return "{}-{}-{}-{}".format(self.district, self.year, self.vac_able, self.vac_done)
+
 
 #class = table, attribute = fields
 class Post(models.Model):

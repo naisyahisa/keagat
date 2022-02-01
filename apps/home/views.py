@@ -42,14 +42,18 @@ from .chartjs import processData
 def index(request):
     if request.method == "GET":    
         vaksin = Vaksinasi.objects.all()
-        dict = processData.firstChart(vaksin)
-        print("Here is dict:")
-        print(dict)
+        # print(vaksin)
+        dist = processData.firstChart(vaksin)
+        print("Here is dist:")
+        print(dist)
         # yearlyData()
         context = {
             'segment': 'index',
-            'vaksin':dict
+            'dist':dist[0],
+            'perc':dist[1],
+            'year':dist[2]
             }
+
     #context:
     #{'segment': 'index', 'vaksin': <QuerySet [<Vaksinasi: Baling-2018-157-100>, 
     # <Vaksinasi: Sik-2018-109-98>, <Vaksinasi: Alor Setar-2018-318-210>, 
