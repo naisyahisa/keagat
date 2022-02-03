@@ -1,5 +1,4 @@
 {% extends 'layouts/base-fullscreen.html' %}
-{% load crispy_forms_tags %}
 {% block title %} Log Masuk {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
@@ -29,12 +28,6 @@
                 <form role="form text-left" method="post" action="">
                   
                   {% csrf_token %}
-                  <!-- <fieldset class="form-group">
-                      <legend class="border-bottom mb-4">Log In</legend>
-                      vertical bar to specify filter and style use
-                      {{form|crispy}}
-                  </fieldset> -->
-
                   <label>Username</label>
                   <div class="mb-3">
                     {{ form.username }}

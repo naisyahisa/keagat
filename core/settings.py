@@ -19,7 +19,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')
 # MIGRATE command will look into these & create db
 # according to the db settings in mysite/settings.py
 INSTALLED_APPS = [
-    'crispy_forms',
     'django.contrib.admin', # Required for helpdesk admin/maintenance
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,7 +139,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #############################################################
 #############################################################
