@@ -46,12 +46,26 @@ def index(request):
         dist = processData.firstChart(vaksin)
         print("Here is dist:")
         print(dist)
-        # yearlyData()
+
+        daerah = processData.get_label(vaksin)
+        print("daerah:",daerah)
+        
+        v_done19 = processData.get_vac_done(vaksin,2019)
+        v_done18 = processData.get_vac_done(vaksin,2018)
+        v_done20 = processData.get_vac_done(vaksin,2020)
+
+       
         context = {
             'segment': 'index',
             'dist':dist[0],
             'perc':dist[1],
-            'year':dist[2]
+            'year':dist[2],
+            'vaksin':vaksin,
+            'daerah':daerah,
+            'v_done19':v_done19,
+            'v_done18':v_done18,
+            'v_done20':v_done20,
+
             }
 
     #context:
@@ -59,8 +73,8 @@ def index(request):
     # <Vaksinasi: Sik-2018-109-98>, <Vaksinasi: Alor Setar-2018-318-210>, 
     # <Vaksinasi: Langkawi-2020-3926-2136>, '...(remaining elements truncated)...']>}
     html_template = loader.get_template('home/index.html')
-    return HttpResponse(html_template.render(context, request))
-
+    # return HttpResponse(html_template.render(context, request))
+    return render(request, 'home/index.html', context)
 
 @login_required(login_url="/login/")
 def pages(request):

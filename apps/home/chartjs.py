@@ -1,6 +1,7 @@
 from ast import Or
 from collections import OrderedDict
-
+import collections, json
+import pandas as pd
 
 class processData:
     def firstChart(vaksin):
@@ -82,3 +83,55 @@ class processData:
         # print("##############")
         # print(districtDict)    
         return labellist, labeldata, labelyear
+    
+    def thirdChart(vaksin):
+
+        # data: {
+        #     datasets: [{
+        #             data: [{district: 'Alor Setar', 2018: {vac_able: 318,vac_done:210}}, {district: 'Baling', 2018: {vac_able: 157,vac_done:100}}]
+        #                 }]
+        #     },
+        #     options: {
+        #         parsing: {
+        #             xAxisKey: 'district',
+        #             yAxisKey: '2018.value'
+        #                 }
+        #             }   
+
+        return vaksin
+    
+    def get_label(vaksin):
+        lbl = []
+        for i in vaksin:
+            if i.district not in lbl:
+                lbl.append(i.district)
+
+        return lbl
+    
+    def get_vac_done(vaksin,tahun=2018):
+        data =[]
+        for i in vaksin:
+            if i.year==tahun:
+                data.append(i.vac_done)
+            
+        return data
+
+    def get_json(vaksin,tahun):
+        data=[]
+        # for feature in vaksin:
+        #     item = {"daerah": feature.district}
+        item = {}
+        for attribute in vaksin:
+            
+            if attribute.year==tahun:
+                item = {'daerah':attribute.district,'bilangan':{'vac_able':attribute.vac_able,'vac_done':attribute.vac_done}}
+                data.append(item)
+
+        jsonData=json.dumps(data)
+        return jsonData
+    
+   
+    def dataforpredict(vaksin):
+        df = pd.DataFrame(list(vaksin.objects.all().values()))
+        return df
+        

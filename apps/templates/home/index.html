@@ -271,6 +271,552 @@
           </div>
         </div>
       </div>
+      <!-- bar chart 3-->
+      <div class="row mt-4">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h6>Laporan Tahunan</h6>
+              <p class="text-sm">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">4% more</span> in 2019
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-bar-3" style="width: 100%; height: 600px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-lg-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <h6 class="ms-2 mt-4 mb-0"> Something </h6>
+              <p class="text-sm">
+                {% if vaksin.0.year is not 2018 %}
+                Value in data is : - {{vaksin.1.year}}
+                {% else %}
+                Data is empty
+                {% endif%}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- table vaksin-->
+      <div class="row my-4">
+        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>Progres Vaksinasi Daerah</h6>
+                  <p class="text-sm mb-0">
+                    <i class="fa fa-check text-info" aria-hidden="true"></i>
+                    <span class="font-weight-bold ms-1">30 pertambahan</span> bulan ini
+                  </p>
+                </div>
+                <div class="col-lg-6 col-5 my-auto text-end">
+                  <div class="dropdown float-lg-end pe-4">
+                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-ellipsis-v text-secondary"></i>
+                    </a>
+                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Daerah</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Populasi</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Terima Vaksin</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Progres</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Alor Setar</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">working</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">60%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Baling</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$5,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Bandar Baharu</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$3,400</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">canceled</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">30%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Kubang Pasu</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">canceled</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">0%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-webdev.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Kulim</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$14,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">working</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">80%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 80%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Langkawi</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Padang Terap</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Pendang</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Pokok Sena</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Sik</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Sungai Petani</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <!-- <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
+                            </div> -->
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Yan</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h6>Orders overview</h6>
+              <p class="text-sm">
+                <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
+                <span class="font-weight-bold">24%</span> this month
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="timeline timeline-one-side">
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-bell-55 text-success text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-html5 text-danger text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-cart text-info text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-credit-card text-warning text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-key-25 text-primary text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
+                  </div>
+                </div>
+                <div class="timeline-block">
+                  <span class="timeline-step">
+                    <i class="ni ni-money-coins text-dark text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- table end -->
       <div class="row my-4">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
           <div class="card">
@@ -648,34 +1194,40 @@
   <script src="/static/assets/js/plugins/chartjs.min.js"></script>
   <script src="/static/assets/js/plugins/Chart.extension.js"></script>
   <script>
-    var distr = "{{dist}}"
-    console.log(typeof(distr),distr)
-    var distrr = distr.replace(/&#x27;/g,'');
-    console.log(distrr)
-    let text = distrr;
-    var removeLastFirstChar = text.slice(1, text.length - 1);
-    //console.log('Removing the last character: ', removeLastChar);
-    var distList = removeLastFirstChar.split(", ");
-    console.log(distList)
 
-    var perc = "{{perc}}"
-    console.log(typeof(perc),perc)
-    var percc = perc.replace(/&#x27;/g,'');
-    console.log(percc)
-    let textPerc = percc;
-    var removeLastFirstCharPercc = textPerc.slice(1, textPerc.length - 1);
-    //console.log('Removing the last character: ', removeLastChar);
-    var percList = removeLastFirstCharPercc.split(", ");
-    console.log(percList)
+    function solve(input) {
 
+      const replaceWith = '' // e.g. replace &quot; by "
+      var result = input.replace(/&#x27;/g, replaceWith)
+      var removeLastFirstChar = result.slice(1, result.length - 1);
+      var stringlist = removeLastFirstChar.split(", ");
+      return stringlist;
+    } 
 
+    var distr = '{{dist}}';
+    distr = solve(distr)
+    console.log(typeof(distr),distr);
 
+    var perc = {{perc}};
+    console.log(typeof(perc),perc);
+
+    var daerah = '{{daerah}}';
+    daerah = solve(daerah)
+    console.log(typeof(daerah),daerah)
+   
+    
+    var v_done19 = {{v_done19}};
+    console.log(typeof(v_done19),v_done19)
+    var v_done18 = {{v_done18}};
+    console.log(typeof(v_done18),v_done18)
+    
     var ctx = document.getElementById("chart-bars").getContext("2d");
     new Chart(ctx, {
       type: "bar",
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        labels: distList,
+        // labels: distList,
+        labels:[{% for vaks in vaksin %} '{{ vaks.district }}', {% endfor %}],
         datasets: [{
           label: "Vaccinated",
           tension: 0.4,
@@ -684,7 +1236,7 @@
           backgroundColor: "#fff",
           // data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
           data: [{% for vaks in vaksin %} {{ vaks.vac_done }}, {% endfor %}],
-          maxBarThickness: 6
+          maxBarThickness: 10
         }, ],
       },
       options: {
@@ -746,7 +1298,7 @@
       type: "line",
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        labels: distList,
+        labels: daerah,
         datasets: [{
             label: "Vaccined",
             tension: 0.4,
@@ -756,8 +1308,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke1,
             // data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            data: percList,
-            maxBarThickness: 6
+            data: {{perc}},
+            maxBarThickness: 10
 
           },
           //{
@@ -799,7 +1351,7 @@
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 500,
+              suggestedMax: 120,
               beginAtZero: true,
               padding: 10,
               fontSize: 11,
@@ -826,6 +1378,56 @@
         },
       },
     });
+
+  
+      var ctx3 = document.getElementById("chart-bar-3").getContext('2d');
+      var theme_g1 = ctx3.createLinearGradient(0, 300, 0, 0);
+      theme_g1.addColorStop(0, '#1de9b6');
+      theme_g1.addColorStop(1, '#1dc4e9');
+      var theme_g2 = ctx3.createLinearGradient(0, 300, 0, 0);
+      theme_g2.addColorStop(0, '#899FD4');
+      theme_g2.addColorStop(1, '#A389D4');
+      var theme_g3 = ctx3.createLinearGradient(0, 300, 0, 0);
+      theme_g3.addColorStop(0, '#600FD4');
+      theme_g3.addColorStop(1, '#4009D4');
+      var data1 = {
+         
+          labels: distr,
+          datasets: [{
+              label: "Data 2018",
+              data: {{v_done18}},
+              borderColor: theme_g1,
+              backgroundColor: theme_g1,
+              hoverborderColor: theme_g1,
+              hoverBackgroundColor: theme_g1,
+          }, {
+              label: "Data 2019",
+              data:{{v_done19}},
+              borderColor: theme_g2,
+              backgroundColor: theme_g2,
+              hoverborderColor: theme_g2,
+              hoverBackgroundColor: theme_g2,
+          },{
+              label: "Data 2020",
+              data: {{v_done20}},
+              borderColor: theme_g3,
+              backgroundColor: theme_g3,
+              hoverborderColor: theme_g3,
+              hoverBackgroundColor: theme_g3,
+          }]
+      };
+      var myBarChart = new Chart(ctx3, {
+          type: 'horizontalBar',
+          data: data1,
+          options: {    
+
+              barValueSpacing: 20
+              // parsing: {
+              //     xAxisKey: 'daerah',
+              //     yAxisKey: 'bilangan.vac_done'
+              // }
+          }
+      });
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
