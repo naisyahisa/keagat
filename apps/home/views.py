@@ -44,16 +44,49 @@ def index(request):
         vaksin = Vaksinasi.objects.all()
         # print(vaksin)
         dist = processData.firstChart(vaksin)
-        print("Here is dist:")
-        print(dist)
+        # print("Here is dist:")
+        # print(dist)
 
         daerah = processData.get_label(vaksin)
-        print("daerah:",daerah)
-        
-        v_done19 = processData.get_vac_done(vaksin,2019)
-        v_done18 = processData.get_vac_done(vaksin,2018)
-        v_done20 = processData.get_vac_done(vaksin,2020)
+        # print("daerah:",daerah)
 
+        distinct_year = Vaksinasi.objects.all().values_list('year', flat=True).distinct()
+        print(distinct_year)
+       
+        
+        v_doneAble15 = processData.get_vac_done_able(vaksin,2015)
+        v_doneAble16 = processData.get_vac_done_able(vaksin,2016)
+        v_doneAble17 = processData.get_vac_done_able(vaksin,2017)
+        v_doneAble18 = processData.get_vac_done_able(vaksin,2018)
+        v_doneAble19 = processData.get_vac_done_able(vaksin,2019)
+        v_doneAble20 = processData.get_vac_done_able(vaksin,2020)
+
+        sum = processData.calc_whole_perc(distinct_year,vaksin)
+
+        v_perc15 = processData.get_vac_perc(vaksin,2015)
+        v_perc16 = processData.get_vac_perc(vaksin,2016)
+        v_perc17 = processData.get_vac_perc(vaksin,2017)
+        v_perc18 = processData.get_vac_perc(vaksin,2018)
+        v_perc19 = processData.get_vac_perc(vaksin,2019)
+        v_perc20 = processData.get_vac_perc(vaksin,2020)
+
+        # sorted_list15 = processData.sorted_data(daerah, v_perc15)
+        # sorted_list16 = processData.sorted_data(daerah, v_perc16)
+        # sorted_list17 = processData.sorted_data(daerah, v_perc17)   
+        # sorted_list18 = processData.sorted_data(daerah, v_perc18)
+        # sorted_list19 = processData.sorted_data(daerah, v_perc19)
+        sorted_list20 = processData.sorted_data(daerah, v_perc20)
+
+        #sorted percentage follow daerah 2020 (daerah 2020, value ascending)
+        sorted_perc15 = processData.sorted_not20(daerah, v_perc15, sorted_list20)
+        sorted_perc16 = processData.sorted_not20(daerah, v_perc16, sorted_list20)
+        sorted_perc17 = processData.sorted_not20(daerah, v_perc17, sorted_list20)   
+        sorted_perc18 = processData.sorted_not20(daerah, v_perc18, sorted_list20)
+        sorted_perc19 = processData.sorted_not20(daerah, v_perc19, sorted_list20)
+
+        # print(sorted_perc18)
+        # print(sorted_perc19)
+        # print(sorted_list20[0][1])
        
         context = {
             'segment': 'index',
@@ -61,11 +94,18 @@ def index(request):
             'perc':dist[1],
             'year':dist[2],
             'vaksin':vaksin,
-            'daerah':daerah,
-            'v_done19':v_done19,
-            'v_done18':v_done18,
-            'v_done20':v_done20,
-
+            # 'daerah':daerah,
+            # 'v_done19':v_doneable19,
+            # 'v_done18':v_doneable18,
+            # 'v_done20':v_doneable20,
+            #sorted value 
+            'sorted_daerah': sorted_list20[0],
+            'sorted_perc15': sorted_perc15,
+            'sorted_perc16': sorted_perc16,
+            'sorted_perc17': sorted_perc17,
+            'sorted_perc18': sorted_perc18,
+            'sorted_perc19': sorted_perc19,
+            'sorted_perc20': sorted_list20[1],
             }
 
     #context:

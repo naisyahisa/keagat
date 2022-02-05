@@ -141,9 +141,9 @@
         <div class="col-lg-5 mb-lg-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
-              <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+              <div class="card-body p-3">
                 <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170px"></canvas>
+                  <canvas id="chart-line" class="chart-canvas" height="300px"></canvas>
                 </div>
               </div>
               <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
@@ -263,9 +263,9 @@
                 <span class="font-weight-bold">4% more</span> in 2021
               </p>
             </div>
-            <div class="card-body p-3">
+            <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
               <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="300px"></canvas>
+                <canvas id="chart-bars" class="chart-canvas" height="170px"></canvas>
               </div>
             </div>
           </div>
@@ -273,7 +273,7 @@
       </div>
       <!-- bar chart 3-->
       <div class="row mt-4">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-header pb-0">
               <h6>Laporan Tahunan</h6>
@@ -289,7 +289,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mb-lg-0 mb-4">
+        <!-- <div class="col-lg-4 mb-lg-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <h6 class="ms-2 mt-4 mb-0"> Something </h6>
@@ -302,7 +302,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- table vaksin-->
       <div class="row my-4">
@@ -351,7 +351,7 @@
                               <img src="/static/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Alor Setar</h6>
+                              <h6 class="mb-0 text-sm">"{{daerah.0}}"</h6>
                             </div>
                           </div>
                         </td>
@@ -363,10 +363,10 @@
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">60%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.0}}</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.0}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -1204,22 +1204,26 @@
       return stringlist;
     } 
 
-    var distr = '{{dist}}';
-    distr = solve(distr)
-    console.log(typeof(distr),distr);
+    //var distr = '{{dist}}';
+    //distr = solve(distr)
+    //console.log(typeof(distr),distr);
 
-    var perc = {{perc}};
-    console.log(typeof(perc),perc);
+    //var perc = {{perc}};
+    //console.log(typeof(perc),perc);
 
-    var daerah = '{{daerah}}';
-    daerah = solve(daerah)
-    console.log(typeof(daerah),daerah)
+    //semua value akan follow daerah 2020 punya sort
+    var daerah = '{{sorted_daerah}}';
+    daerah = solve(daerah);
+    console.log(typeof(daerah),daerah);
    
     
-    var v_done19 = {{v_done19}};
-    console.log(typeof(v_done19),v_done19)
-    var v_done18 = {{v_done18}};
-    console.log(typeof(v_done18),v_done18)
+    //var v_done19 = {{v_done19}};
+    //console.log(typeof(v_done19),v_done19)
+    //var v_done18 = {{v_done18}};
+    //console.log(typeof(v_done18),v_done18)
+
+    //var v_perc18 = {{v_perc18}};
+    //console.log(typeof(v_perc18),v_perc18)
     
     var ctx = document.getElementById("chart-bars").getContext("2d");
     new Chart(ctx, {
@@ -1227,15 +1231,15 @@
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         // labels: distList,
-        labels:[{% for vaks in vaksin %} '{{ vaks.district }}', {% endfor %}],
+        labels:daerah,
         datasets: [{
-          label: "Vaccinated",
+          label: "Vaccinated percentage",
           tension: 0.4,
           borderWidth: 0,
           pointRadius: 0,
           backgroundColor: "#fff",
           // data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          data: [{% for vaks in vaksin %} {{ vaks.vac_done }}, {% endfor %}],
+          data: {{sorted_perc15}},
           maxBarThickness: 10
         }, ],
       },
@@ -1257,7 +1261,7 @@
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 500,
+              suggestedMax: 100,
               beginAtZero: true,
               padding: 0,
               fontSize: 14,
@@ -1308,7 +1312,7 @@
             borderWidth: 3,
             backgroundColor: gradientStroke1,
             // data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            data: {{perc}},
+            data: {{sorted_perc20}},
             maxBarThickness: 10
 
           },
@@ -1351,7 +1355,7 @@
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 120,
+              suggestedMax: 100,
               beginAtZero: true,
               padding: 10,
               fontSize: 11,
@@ -1385,42 +1389,79 @@
       theme_g1.addColorStop(0, '#1de9b6');
       theme_g1.addColorStop(1, '#1dc4e9');
       var theme_g2 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g2.addColorStop(0, '#899FD4');
-      theme_g2.addColorStop(1, '#A389D4');
+      theme_g2.addColorStop(0, '#e65000');//#899FD4
+      theme_g2.addColorStop(1, '#ff7142');//#A389D4
       var theme_g3 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g3.addColorStop(0, '#600FD4');
-      theme_g3.addColorStop(1, '#4009D4');
+      theme_g3.addColorStop(0, '#FD9AFF');
+      theme_g3.addColorStop(1, '#FA04FF');//#899FD4
+      var theme_g4 = ctx3.createLinearGradient(0, 300, 0, 0);
+      theme_g4.addColorStop(0, '#F7CB2D');//#FFE072
+      theme_g4.addColorStop(1, '#FFCD1B');
+      var theme_g5 = ctx3.createLinearGradient(0, 300, 0, 0);
+      theme_g5.addColorStop(0, '#7D2D2E');
+      theme_g5.addColorStop(1, '#71090B');
+      var theme_g6 = ctx3.createLinearGradient(0, 300, 0, 0);
+      theme_g6.addColorStop(0, '#600FD4');
+      theme_g6.addColorStop(1, '#4009D4');
+
       var data1 = {
-         
-          labels: distr,
+          labels: daerah,
           datasets: [{
-              label: "Data 2018",
-              data: {{v_done18}},
+              label: "Data 2015",
+              data: {{sorted_perc15}},
               borderColor: theme_g1,
               backgroundColor: theme_g1,
               hoverborderColor: theme_g1,
               hoverBackgroundColor: theme_g1,
-          }, {
-              label: "Data 2019",
-              data:{{v_done19}},
+              },
+              {
+              label: "Data 2016",
+              data:{{sorted_perc16}},
               borderColor: theme_g2,
               backgroundColor: theme_g2,
               hoverborderColor: theme_g2,
               hoverBackgroundColor: theme_g2,
-          },{
-              label: "Data 2020",
-              data: {{v_done20}},
+              },
+              {
+              label: "Data 2017",
+              data: {{sorted_perc17}},
               borderColor: theme_g3,
               backgroundColor: theme_g3,
               hoverborderColor: theme_g3,
               hoverBackgroundColor: theme_g3,
-          }]
+              },
+              {
+              label: "Data 2018",
+              data:{{sorted_perc18}},
+              borderColor: theme_g4,
+              backgroundColor: theme_g4,
+              hoverborderColor: theme_g4,
+              hoverBackgroundColor: theme_g4,
+              },
+              {
+              label: "Data 2019",
+              data:{{sorted_perc19}},
+              borderColor: theme_g5,
+              backgroundColor: theme_g5,
+              hoverborderColor: theme_g5,
+              hoverBackgroundColor: theme_g5,
+              },
+              {
+              label: "Data 2020",
+              data:{{sorted_perc20}},
+              borderColor: theme_g6,
+              backgroundColor: theme_g6,
+              hoverborderColor: theme_g6,
+              hoverBackgroundColor: theme_g6,
+              }]
+              
       };
+
+      //chartbanyaktahun
       var myBarChart = new Chart(ctx3, {
-          type: 'horizontalBar',
+          type: 'bar',
           data: data1,
           options: {    
-
               barValueSpacing: 20
               // parsing: {
               //     xAxisKey: 'daerah',
