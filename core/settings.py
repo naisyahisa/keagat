@@ -26,8 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     #handling static files: images, css etc
     'django.contrib.staticfiles',
-    'apps.home'  # Enable the inner home (home)
-    
+    'apps.home',  # Enable the inner home (home)
+    'apps.authentication'
 ]
 
 # request and response processing
