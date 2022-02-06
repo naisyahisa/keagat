@@ -1,5 +1,4 @@
 {% extends 'layouts/base-fullscreen.html' %}
-{% crispy_forms_tags %}
 {% block title %} Sign UP {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
@@ -32,25 +31,25 @@
 
                   <label>Username</label>
                   <div class="mb-3">
-                    {{ form.username |as_crispy_field}}
+                    {{ form.username }}
                   </div>
                   <span class="text-error">{{ form.username.errors }}</span>
 
                   <label>Email</label>
                   <div class="mb-3">
-                    {{ form.email |as_crispy_field}}
+                    {{ form.email }}
                   </div>
                   <span class="text-error">{{ form.email.errors }}</span>
                   
                   <label>Password</label>
                   <div class="mb-3">
-                    {{ form.password1 |as_crispy_field}}
+                    {{ form.password1 }}
                   </div>
                   <span class="text-error">{{ form.password1.errors }}</span>
 
                   <label>Password Check</label>
                   <div class="mb-3">
-                    {{ form.password2 |as_crispy_field}}
+                    {{ form.password2 }}
                   </div>
                   <span class="text-error">{{ form.password2.errors }}</span>
 
@@ -74,7 +73,7 @@
           </div>
           <div class="col-md-6">
             <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-              <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/static/assets/img/curved-images/curved6.jpg')"></div>
+              <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/static/assets/img/jkn_edited.png')"></div>
             </div>
           </div>
         </div>

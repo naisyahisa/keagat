@@ -1,6 +1,6 @@
 {% extends 'layouts/base-fullscreen.html' %}
-
-{% block title %} Sign UP {% endblock title %}
+{% load crispy_forms_tags %}
+{% block title %} Pendaftaran {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -19,7 +19,7 @@
                   {% if msg %}
                         {{ msg | safe }}
                     {% else %}
-                        Sila sediakan maklumat anda..
+                        Sila sediakan maklumat anda.
                     {% endif %}
                 </p>
               </div>
@@ -30,28 +30,28 @@
 
                   <label>Username</label>
                   <div class="mb-3">
-                    {{ form.username |as_crispy_field}}
+                    {{ form.username |crispy}}
                     <!-- <input class="form-control" placeholder="Username" aria-label="Username"> -->
                   </div>
                   <span class="text-error">{{ form.username.errors }}</span>
 
                   <label>Email</label>
                   <div class="mb-3">
-                    {{ form.email |as_crispy_field}}  
+                    {{ form.email |crispy}}  
                     <!-- <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon"> -->
                   </div>
                   <span class="text-error">{{ form.email.errors }}</span>
 
                   <label>Password</label>
                   <div class="mb-3">
-                    {{ form.password1 |as_crispy_field}}
+                    {{ form.password1 |crispy}}
                     <!-- <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon"> -->
                   </div>
                   <span class="text-error">{{ form.password1.errors }}</span>
 
                   <label>Password Check</label>
                   <div class="mb-3">
-                    {{ form.password2 |as_crispy_field}}
+                    {{ form.password2 |crispy}}
                   </div>
                   <span class="text-error">{{ form.password2.errors }}</span>
 

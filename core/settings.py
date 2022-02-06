@@ -21,7 +21,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')
 INSTALLED_APPS = [
     'apps.home',  # Enable the inner home (home)
     'apps.authentication',
-    'crispy_forms',
+    # 'crispy_forms',
+    # 'bootstrap4',
     'django.contrib.admin', # Required for helpdesk admin/maintenance
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,7 +148,7 @@ MEDIA_URL = '/media/'
 # C:\Users\LENOVO\projects\keagat\core
 # CORE_DIR
 # C:\Users\LENOVO\projects\keagat
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #############################################################
 #############################################################
