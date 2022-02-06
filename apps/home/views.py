@@ -4,7 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth, messages
 #only login user could see profile page
+<<<<<<< HEAD
 
+=======
+from django.contrib.auth.decorators import login_required
+>>>>>>> d4920535e8a79781a610177210e65055a5f53ea3
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
@@ -123,13 +127,19 @@ def pages(request):
     # All resource paths end in .html.
     # Pick out the html file name from the url. And load that template.
     try:
-
         load_template = request.path.split('/')[-1]
+        print('template', load_template)
 
         if load_template == 'admin':
             return HttpResponseRedirect(reverse('admin:index'))
         context['segment'] = load_template
+
+        if load_template == 'register.html':
+            html_template = loader.get_template('accounts/' + load_template)
+            print('context', context)
+            return HttpResponse(html_template.render(context, request))
         
+
         html_template = loader.get_template('home/' + load_template)
         return HttpResponse(html_template.render(context, request))
 
