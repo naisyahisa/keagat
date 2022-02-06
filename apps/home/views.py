@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth, messages
 #only login user could see profile page
-from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm #helpForm
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
@@ -24,7 +23,7 @@ from .chartjs import processData
 #             return redirect('login')
 #     else:
 #         form = UserRegisterForm()
-#     return render(request, 'users_act/register.html', {'form': form}) 
+#     return render(request, 'accounts/register.html', {'form': form}) 
 
 # def yearlyData():
 #     vaksin2018 = Vaksinasi.objects.filter(year = 2018)
@@ -53,6 +52,7 @@ def index(request):
         distinct_year = Vaksinasi.objects.all().values_list('year', flat=True).distinct()
         print(distinct_year)
        
+        v_able_sum, v_done_sum, whole_perc, year = processData.sum_year(vaksin)
         
         v_doneAble15 = processData.get_vac_done_able(vaksin,2015)
         v_doneAble16 = processData.get_vac_done_able(vaksin,2016)
@@ -60,8 +60,6 @@ def index(request):
         v_doneAble18 = processData.get_vac_done_able(vaksin,2018)
         v_doneAble19 = processData.get_vac_done_able(vaksin,2019)
         v_doneAble20 = processData.get_vac_done_able(vaksin,2020)
-
-        sum = processData.calc_whole_perc(distinct_year,vaksin)
 
         v_perc15 = processData.get_vac_perc(vaksin,2015)
         v_perc16 = processData.get_vac_perc(vaksin,2016)
@@ -106,6 +104,9 @@ def index(request):
             'sorted_perc18': sorted_perc18,
             'sorted_perc19': sorted_perc19,
             'sorted_perc20': sorted_list20[1],
+            'v_able_sum' : v_able_sum, 
+            'v_done_sum' : v_done_sum,
+            'whole_perc' : whole_perc,
             }
 
     #context:

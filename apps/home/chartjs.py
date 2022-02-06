@@ -2,6 +2,7 @@ from ast import Or
 from collections import OrderedDict
 import collections, json
 import pandas as pd
+import numpy as np
 
 class processData:
     def firstChart(vaksin):
@@ -83,21 +84,6 @@ class processData:
         # print(districtDict)    
         return labellist, labeldata, labelyear
     
-    def thirdChart(vaksin):
-
-        # data: {
-        #     datasets: [{
-        #             data: [{district: 'Alor Setar', 2018: {vac_able: 318,vac_done:210}}, {district: 'Baling', 2018: {vac_able: 157,vac_done:100}}]
-        #                 }]
-        #     },
-        #     options: {
-        #         parsing: {
-        #             xAxisKey: 'district',
-        #             yAxisKey: '2018.value'
-        #                 }
-        #             }   
-
-        return vaksin
     
     def get_label(vaksin):
         lbl = []
@@ -188,37 +174,20 @@ class processData:
         jsonData=json.dumps(data)
         return jsonData
     
-   
-    def calc_whole_perc(distinct_year, vaksin):
-        sum_able_year = []
-        sum_done_year = []
-        sum_able = 0
-        sum_done = 0
-        limit = 0
-        for i in vaksin:
-            # print('i',i)
-            for j in distinct_year:
-                # print('j',j)
-                if j == i.year:
-                    limit = limit +1
-                    # print('limit:', limit)
-                    if limit == 13:
-                        sum_able_year.append(sum_able)
-                        sum_done_year.append(sum_done)
-                        sum_able = 0 
-                        sum_done = 0
-                        break
-                    else:
-                        # print("tambah")
-                        sum_able += i.vac_able
-                        sum_done += i.vac_done
-        # print(sum_able)
-        # print(sum_done)
-        whole_perc = round((sum_done/sum_able)*100,2)
-        # print(whole_perc)
-        return whole_perc
 
 
+    def sum_year(vaksin):
+        df = pd.DataFrame(list(vaksin.values()))
+        #print(df.head())
+        sum_by_year = df.groupby('year').sum()
+        #print(sum_by_year)
+        year = df.year.values
+        v_able_sum = sum_by_year.vac_able.values
+        v_done_sum = sum_by_year.vac_done.values
+
+        whole_perc = np.around((v_done_sum/v_able_sum)*100,2).tolist()
+        print(v_able_sum,v_done_sum,whole_perc,year)
+        return v_able_sum, v_done_sum, whole_perc , year
 
     def dataforpredict(vaksin):
         df = pd.DataFrame(list(vaksin.objects.all().values()))
