@@ -19,15 +19,16 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')
 # MIGRATE command will look into these & create db
 # according to the db settings in mysite/settings.py
 INSTALLED_APPS = [
+    'apps.home',  # Enable the inner home (home)
+    'apps.authentication',
+    'crispy_forms',
     'django.contrib.admin', # Required for helpdesk admin/maintenance
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     #handling static files: images, css etc
-    'django.contrib.staticfiles',
-    'apps.home',  # Enable the inner home (home)
-    'apps.authentication'
+    'django.contrib.staticfiles'
 ]
 
 # request and response processing
@@ -139,7 +140,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
-# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT = os.path.join(CORE_DIR, 'apps/static/assets/media')
+MEDIA_URL = '/media/'
+# BASE_DIR
+# C:\Users\LENOVO\projects\keagat\core
+# CORE_DIR
+# C:\Users\LENOVO\projects\keagat
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #############################################################
 #############################################################

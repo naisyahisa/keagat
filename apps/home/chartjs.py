@@ -196,12 +196,12 @@ class processData:
         sum_done = 0
         limit = 0
         for i in vaksin:
-            print('i',i)
+            # print('i',i)
             for j in distinct_year:
-                print('j',j)
+                # print('j',j)
                 if j == i.year:
                     limit = limit +1
-                    print('limit:', limit)
+                    # print('limit:', limit)
                     if limit == 13:
                         sum_able_year.append(sum_able)
                         sum_done_year.append(sum_done)
@@ -209,13 +209,13 @@ class processData:
                         sum_done = 0
                         break
                     else:
-                        print("tambah")
+                        # print("tambah")
                         sum_able += i.vac_able
                         sum_done += i.vac_done
-        print(sum_able)
-        print(sum_done)
+        # print(sum_able)
+        # print(sum_done)
         whole_perc = round((sum_done/sum_able)*100,2)
-        print(whole_perc)
+        # print(whole_perc)
         return whole_perc
 
 
