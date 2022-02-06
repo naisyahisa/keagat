@@ -18,9 +18,9 @@ def login_view(request):
                 login(request, user)
                 return redirect("/")
             else:
-                msg = 'Invalid credentials'
+                msg = 'Butiran tidak sah. Sila cuba lagi.'
         else:
-            msg = 'Error validating the form'
+            msg = 'Ralat mengesahkan maklumat. Sila cuba lagi.'
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
@@ -37,13 +37,13 @@ def register_user(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
 
-            msg = 'User created - please <a href="/login">login</a>.'
+            msg = 'Pengguna baru telah dicipta - sila <a href="/login">log masuk</a>.'
             success = True
 
-            # return redirect("/login/")
+            return redirect("/login/")
 
         else:
-            msg = 'Form is not valid'
+            msg = 'Butiran tidak dapat disahkan. Sila cuba lagi.'
     else:
         form = SignUpForm()
 
