@@ -1,8 +1,4 @@
 {% extends 'layouts/base-fullscreen.html' %}
-<<<<<<< HEAD
-{% load crispy_forms_tags %}
-=======
->>>>>>> d4920535e8a79781a610177210e65055a5f53ea3
 {% block title %} Sign UP {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
@@ -14,11 +10,11 @@
     <div class="page-header section-height-75">
       <div class="container">
         <div class="row">
-          <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+          <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-4">
             <div class="card card-plain mt-8">
               <div class="card-header pb-0 text-left bg-transparent">
                 <h4 class="text-info text-gradient">
-                  Keagat - Register
+                  Keagat - Daftar masuk
                 </h4>
                 <p class="mb-0">
                     {% if msg %}
@@ -34,25 +30,25 @@
                   {% csrf_token %}
 
                   <label>Username</label>
-                  <div class="mb-3">
+                  <div class="mb-1">
                     {{ form.username }}
                   </div>
                   <span class="text-error">{{ form.username.errors }}</span>
 
                   <label>Email</label>
-                  <div class="mb-3">
+                  <div class="mb-1">
                     {{ form.email }}
                   </div>
                   <span class="text-error">{{ form.email.errors }}</span>
                   
                   <label>Password</label>
-                  <div class="mb-3">
+                  <div class="mb-1">
                     {{ form.password1 }}
                   </div>
                   <span class="text-error">{{ form.password1.errors }}</span>
 
                   <label>Password Check</label>
-                  <div class="mb-3">
+                  <div class="mb-1">
                     {{ form.password2 }}
                   </div>
                   <span class="text-error">{{ form.password2.errors }}</span>
@@ -62,17 +58,17 @@
                     <label class="form-check-label" for="rememberMe">Terms</label>
                   </div> -->
                   <div class="text-center">
-                    <button type="submit" name="register" class="btn bg-gradient-info w-100 mt-4 mb-0">Daftar</button>
+                    <button type="submit" name="register" class="btn bg-gradient-info w-100 mt-3 mb-0">Daftar</button>
                   </div>
                 </form>
               </div>
-              <div class="card-footer text-center pt-0 px-lg-2 px-1">
+              <!-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 <p class="mb-4 text-sm mx-auto">
                   Sudah mempunyai akaun?
                   <a href="{% url 'login' %}" 
                      class="text-info text-gradient font-weight-bold">Log masuk</a>
                 </p>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-md-6">
@@ -90,7 +86,7 @@
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
 
-  <script>
+  <!-- <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {
@@ -98,6 +94,6 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
-  </script>
+  </script> -->
 
 {% endblock javascripts %}

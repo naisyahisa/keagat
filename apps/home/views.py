@@ -4,42 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth, messages
 #only login user could see profile page
-<<<<<<< HEAD
-
-=======
 from django.contrib.auth.decorators import login_required
->>>>>>> d4920535e8a79781a610177210e65055a5f53ea3
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .models import Vaksinasi
 from .chartjs import processData
-
-# def register(request):
-#     currentUserDet = user_auth.models.User.objects.get(id=id)
-#     if request.method == 'POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             #including encryption for the password
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             messages.success(request, f'Your account has been created! You are now able to log in')
-#             return redirect('login')
-#     else:
-#         form = UserRegisterForm()
-#     return render(request, 'accounts/register.html', {'form': form}) 
-
-# def yearlyData():
-#     vaksin2018 = Vaksinasi.objects.filter(year = 2018)
-#     vaksin2019 = Vaksinasi.objects.filter(year = 2019)
-#     vaksin2020 = Vaksinasi.objects.filter(year = 2020)
-#     print("vaksin 2018")
-#     print(vaksin2018)
-#     print("vaksin 2019")
-#     print(vaksin2019)
-#     print("vaksin 2020")
-#     print(vaksin2020)
-    # dataYear =  processData.firstChart(vaksin2018, vaksin2019, vaksin2020)
 
 @login_required(login_url="/login/")
 def index(request):
@@ -53,8 +23,8 @@ def index(request):
         daerah = processData.get_label(vaksin)
         # print("daerah:",daerah)
 
-        distinct_year = Vaksinasi.objects.all().values_list('year', flat=True).distinct()
-        print(distinct_year)
+        # distinct_year = Vaksinasi.objects.all().values_list('year', flat=True).distinct()
+        # print(distinct_year)
        
         v_able_sum, v_done_sum, whole_perc, year = processData.sum_year(vaksin)
         
@@ -86,6 +56,10 @@ def index(request):
         sorted_perc18 = processData.sorted_not20(daerah, v_perc18, sorted_list20)
         sorted_perc19 = processData.sorted_not20(daerah, v_perc19, sorted_list20)
 
+        diff_whole_perc_current = round(whole_perc[-1] - whole_perc[-2], 2)
+        diff_vac_able_current = round(v_able_sum[-1] - v_able_sum[-2], 2)
+        diff_vac_done_current = round(v_done_sum[-1] - v_done_sum[-2], 2)
+
         # print(sorted_perc18)
         # print(sorted_perc19)
         # print(sorted_list20[0][1])
@@ -110,7 +84,18 @@ def index(request):
             'sorted_perc20': sorted_list20[1],
             'v_able_sum' : v_able_sum, 
             'v_done_sum' : v_done_sum,
+            'asc_year': year,
             'whole_perc' : whole_perc,
+            'latest_v_able':v_able_sum[-1],
+            'latest_v_done':v_done_sum[-1],
+            'latest_whole_perc' : whole_perc[-1],
+            'diff_whole_perc': diff_whole_perc_current,
+            'diff_v_able': diff_vac_able_current,
+            'diff_v_done': diff_vac_done_current,
+            'highest_daerah': sorted_list20[0][-1],
+            'fastest': sorted_list20[1][-1],
+            'lowest_daerah': sorted_list20[0][0],
+            'slowest': sorted_list20[1][0]
             }
 
     #context:
