@@ -1263,8 +1263,8 @@
     new Chart(ctx2, {
       type: "line",
       data: {
-        // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        labels: [2015, 2016, 2017, 2018, 2019, 2020],
+        
+        labels: {{asc_year}},
         datasets: [{
             label: "Telah divaksinasi",
             tension: 0.4,
@@ -1273,7 +1273,7 @@
             borderColor: "#cb0c9f",
             borderWidth: 3,
             backgroundColor: gradientStroke1,
-            data: {{sorted_perc16}},
+            data: {{v_done_sum}},
             maxBarThickness: 6
           },
           {
@@ -1284,7 +1284,7 @@
             borderColor: "#3A416F",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
-            data: {{sorted_perc15}},
+            data: {{v_able_sum}},
             maxBarThickness: 6
           },
         ],

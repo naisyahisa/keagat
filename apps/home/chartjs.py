@@ -179,11 +179,11 @@ class processData:
         #print(df.head())
         sum_by_year = df.groupby('year').sum()
         #print(sum_by_year)
-        year = df.year.values
-        v_able_sum = sum_by_year.vac_able.values
-        v_done_sum = sum_by_year.vac_done.values
+        year = df.year.unique().tolist()
+        v_able_sum = sum_by_year.vac_able.tolist()
+        v_done_sum = sum_by_year.vac_done.tolist()
 
-        whole_perc = np.around((v_done_sum/v_able_sum)*100,2).tolist()
+        whole_perc = np.around((sum_by_year.vac_done/sum_by_year.vac_able)*100,2).tolist()
         print(v_able_sum,v_done_sum,whole_perc,year)
         return v_able_sum, v_done_sum, whole_perc , year
 
