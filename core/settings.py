@@ -142,7 +142,7 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
 
-MEDIA_ROOT = os.path.join(CORE_DIR, 'apps/static/assets/media')
+MEDIA_ROOT = os.path.join(CORE_DIR, 'media')
 MEDIA_URL = '/media/'
 # BASE_DIR
 # C:\Users\LENOVO\projects\keagat\core
