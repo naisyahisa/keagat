@@ -67,7 +67,11 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Daerah dengan vaksinasi tertinggi</p>
                     <h5 class="font-weight-bolder">{{highest_daerah}}</h5>
-                    <span class="text-info text-sm font-weight-bolder">{{fastest}}%</span>
+                    {%if fastest >= 95 %}
+                    <span class="text-success text-sm font-weight-bolder">{{fastest}}%</span>
+                    {% else %}
+                    <span class="text-danger text-sm font-weight-bolder">{{fastest}}%</span>
+                    {% endif %}
                     <span class="text-sm">untuk tahun semasa</span>
                   </div>
                 </div>
@@ -88,7 +92,11 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Daerah dengan vaksinasi terendah</p>
                     <h5 class="font-weight-bolder">{{lowest_daerah}}</h5>
-                    <span class="text-info text-sm font-weight-bolder">{{slowest}}%</span>
+                    {%if slowest >= 95 %}
+                    <span class="text-success text-sm font-weight-bolder">{{slowest}}%</span>
+                    {% else %}
+                    <span class="text-danger text-sm font-weight-bolder">{{slowest}}%</span>
+                    {% endif %}
                     <span class="text-sm">untuk tahun semasa</span>
                   </div>
                 </div>
@@ -103,17 +111,17 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-5 mb-lg-0 mb-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
-              <div class="card-body p-3">
+              <div class="card-body p-2">
                 <div class="chart">
-                  <canvas id="chart-line" class="chart-canvas" height="300px"></canvas>
+                  <canvas id="chart-line" class="chart-canvas" height="400px"></canvas>
                 </div>
               </div>
-              <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
-              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
-              <div class="container border-radius-lg">
+              <h6 class="ms-2 mt-3 mb-0"> Jumlah layak tapi belum divaksinasi </h6>
+              <p class="text-sm ms-2"> <span class="font-weight-bolder">{{notyet_v}}</span> bilangan kanak-kanak </p>
+              <!-- <div class="container border-radius-lg">
                 <div class="row">
                   <div class="col-3 py-3 ps-0">
                     <div class="d-flex mb-2">
@@ -215,17 +223,26 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
-        <div class="col-lg-7">
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-header pb-0">
-              <h6>Vaccination overview</h6>
-              <p class="text-sm">
+              <h5>Peratus keseluruhan vaksinasi </h5>
+              <p>
+                
+                {%if diff_whole_perc >= 0 %}
                 <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
+                <span class="font-weight-bold"> {{diff_whole_perc}} %</span>
+                {% else %}
+                <i class="fa fa-arrow-down text-danger"></i>
+                <span class="font-weight-bold"> {{diff_whole_perc}} %</span>
+                {% endif %}
+                <span class="font-weight-bold">dari tahun lepas</span>
               </p>
             </div>
             <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
@@ -241,10 +258,10 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header pb-0">
-              <h6>Laporan Tahunan</h6>
+              <h5>Laporan tahunan mengikut daerah</h5>
               <p class="text-sm">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2019
+                <!-- <i class="fa fa-arrow-up text-success"></i> -->
+                <span class="font-weight-bold"></span> Nota: klik pada petunjuk warna untuk menyembunyikan data tahun
               </p>
             </div>
             <div class="card-body p-3">
@@ -271,12 +288,12 @@
       </div>
       <!-- table vaksin-->
       <div class="row my-4">
-        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+        <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
           <div class="card">
             <div class="card-header pb-0">
               <div class="row">
                 <div class="col-lg-6 col-7">
-                  <h6>Progres Vaksinasi Daerah</h6>
+                  <h6>Progres Vaksinasi Daerah (Tahun semasa)</h6>
                   <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
                     <span class="font-weight-bold ms-1">30 pertambahan</span> bulan ini
@@ -316,12 +333,12 @@
                               <img src="/static/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">"{{daerah.0}}"</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.0}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.0}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">working</span>
@@ -349,12 +366,12 @@
                               <img src="/static/assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Baling</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.1}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$5,000</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.1}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -382,12 +399,12 @@
                               <img src="/static/assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Bandar Baharu</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.2}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$3,400</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.2}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">canceled</span>
@@ -415,12 +432,12 @@
                               <img src="/static/assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Kubang Pasu</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.3}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.3}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">canceled</span>
@@ -448,12 +465,12 @@
                               <img src="/static/assets/img/small-logos/logo-webdev.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Kulim</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.4}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$14,000</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.4}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">working</span>
@@ -481,12 +498,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Langkawi</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.5}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.5}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -514,12 +531,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Padang Terap</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.6}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.6}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -547,12 +564,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Pendang</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.7}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.7}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -580,12 +597,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Pokok Sena</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.8}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.8}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -613,12 +630,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Sik</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.9}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.9}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -646,12 +663,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Sungai Petani</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.10}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.10}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -679,12 +696,12 @@
                               <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2">
                             </div> -->
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Yan</h6>
+                              <h6 class="mb-0 text-sm">{{sorted_daerah.11}}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                          <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.11}}</p>
                         </td>
                         <td>
                           <span class="text-xs font-weight-bold">done</span>
@@ -782,7 +799,7 @@
         </div>
       </div>
       <!-- table end -->
-      <div class="row my-4">
+      <!-- <div class="row my-4">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
           <div class="card">
             <div class="card-header pb-0">
@@ -1075,7 +1092,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- <div class="col-lg-4 col-md-6">
           <div class="card">
             <div class="card-header pb-0">
@@ -1195,7 +1212,7 @@
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         // labels: distList,
-        labels:daerah,
+        labels:{{asc_year}},
         datasets: [{
           label: "Vaccinated percentage",
           tension: 0.4,
@@ -1203,8 +1220,9 @@
           pointRadius: 0,
           backgroundColor: "#fff",
           // data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          data: {{sorted_perc15}},
-          maxBarThickness: 10
+          //labels: {{asc_year}},
+          data: {{whole_perc}},
+          maxBarThickness: 20
         }, ],
       },
       options: {
@@ -1233,6 +1251,9 @@
               fontColor: "#fff",
               fontStyle: 'normal',
               fontFamily: "Open Sans",
+              //callback: function(value, index, values) {
+                // where 3 is the line index you want to display
+                //return (index === 95) ? "" : null;
             },
           }, ],
           xAxes: [{
@@ -1240,8 +1261,14 @@
               display: false,
             },
             ticks: {
-              display: false,
-              padding: 20,
+              //display: true,
+              padding: 5,
+              //padding: 10,
+              fontSize: 16,
+              fontColor: '#adb5bd',
+              lineHeight: 1,
+              fontStyle: 'normal',
+              fontFamily: "Open Sans",
             },
           }, ],
         },
@@ -1264,27 +1291,27 @@
       type: "line",
       data: {
         // labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        labels: [2015, 2016, 2017, 2018, 2019, 2020],
+        labels: {{asc_year}},
         datasets: [{
             label: "Telah divaksinasi",
             tension: 0.4,
             borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#cb0c9f",
-            borderWidth: 3,
+            pointRadius: 2,
+            borderColor: "#F96800",
+            borderWidth: 2,
             backgroundColor: gradientStroke1,
-            data: {{sorted_perc16}},
+            data: {{v_done_sum}},
             maxBarThickness: 6
           },
           {
             label: "Layak divaksinasi",
             tension: 0.4,
             borderWidth: 0,
-            pointRadius: 0,
+            pointRadius: 2,
             borderColor: "#3A416F",
-            borderWidth: 3,
+            borderWidth: 2,
             backgroundColor: gradientStroke2,
-            data: {{sorted_perc15}},
+            data: {{v_able_sum}},
             maxBarThickness: 6
           },
         ],
@@ -1293,7 +1320,7 @@
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          display: false,
+          display: true,
         },
         tooltips: {
           enabled: true,
@@ -1313,12 +1340,12 @@
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 100,
+              suggestedMax: 1500000,
               beginAtZero: true,
               padding: 10,
-              fontSize: 11,
-              fontColor: '#adb5bd',
-              lineHeight: 3,
+              fontSize: 16,
+              fontColor: '#4C5958',
+              lineHeight: 5,
               fontStyle: 'normal',
               fontFamily: "Open Sans",
             },
@@ -1330,9 +1357,9 @@
             },
             ticks: {
               padding: 10,
-              fontSize: 11,
-              fontColor: '#adb5bd',
-              lineHeight: 3,
+              fontSize: 16,
+              fontColor: '#4C5958',
+              lineHeight: 2,
               fontStyle: 'normal',
               fontFamily: "Open Sans",
             },
@@ -1344,71 +1371,71 @@
   
       var ctx3 = document.getElementById("chart-bar-3").getContext('2d');
       var theme_g1 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g1.addColorStop(0, '#1de9b6');
-      theme_g1.addColorStop(1, '#1dc4e9');
+      theme_g1.addColorStop(0, '#8bd3c7');
+      theme_g1.addColorStop(1, '#8bd3c7');
       var theme_g2 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g2.addColorStop(0, '#e65000');//#899FD4
-      theme_g2.addColorStop(1, '#ff7142');//#A389D4
+      theme_g2.addColorStop(0, '#bd7ebe');//#899FD4
+      theme_g2.addColorStop(1, '#bd7ebe');//#A389D4
       var theme_g3 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g3.addColorStop(0, '#FD9AFF');
-      theme_g3.addColorStop(1, '#FA04FF');//#899FD4
+      theme_g3.addColorStop(0, '#ffb55a');
+      theme_g3.addColorStop(1, '#ffb55a');//#899FD4
       var theme_g4 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g4.addColorStop(0, '#F7CB2D');//#FFE072
-      theme_g4.addColorStop(1, '#FFCD1B');
+      theme_g4.addColorStop(0, '#b2e061');//#FFE072
+      theme_g4.addColorStop(1, '#b2e061');
       var theme_g5 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g5.addColorStop(0, '#7D2D2E');
-      theme_g5.addColorStop(1, '#71090B');
+      theme_g5.addColorStop(0, '#fd7f6f');
+      theme_g5.addColorStop(1, '#fd7f6f');
       var theme_g6 = ctx3.createLinearGradient(0, 300, 0, 0);
-      theme_g6.addColorStop(0, '#600FD4');
-      theme_g6.addColorStop(1, '#4009D4');
+      theme_g6.addColorStop(0, '#7eb0d5');
+      theme_g6.addColorStop(1, '#7eb0d5');
 
       var data1 = {
           labels: daerah,
           datasets: [{
-              label: "Data 2015",
+              label: {{asc_year.0}},
               data: {{sorted_perc15}},
               borderColor: theme_g1,
-              //backgroundColor: theme_g1,
+              backgroundColor: theme_g1,
               hoverborderColor: theme_g1,
               hoverBackgroundColor: theme_g1,
               },
               {
-              label: "Data 2016",
+              label: {{asc_year.1}},
               data:{{sorted_perc16}},
               borderColor: theme_g2,
-              //backgroundColor: theme_g2,
+              backgroundColor: theme_g2,
               hoverborderColor: theme_g2,
               hoverBackgroundColor: theme_g2,
               },
               {
-              label: "Data 2017",
+              label: {{asc_year.2}},
               data: {{sorted_perc17}},
               borderColor: theme_g3,
-              //backgroundColor: theme_g3,
+              backgroundColor: theme_g3,
               hoverborderColor: theme_g3,
               hoverBackgroundColor: theme_g3,
               },
               {
-              label: "Data 2018",
+              label: {{asc_year.3}},
               data:{{sorted_perc18}},
               borderColor: theme_g4,
-              //backgroundColor: theme_g4,
+              backgroundColor: theme_g4,
               hoverborderColor: theme_g4,
               hoverBackgroundColor: theme_g4,
               },
               {
-              label: "Data 2019",
+              label: {{asc_year.4}},
               data:{{sorted_perc19}},
               borderColor: theme_g5,
-              //backgroundColor: theme_g5,
+              backgroundColor: theme_g5,
               hoverborderColor: theme_g5,
               hoverBackgroundColor: theme_g5,
               },
               {
-              label: "Data 2020",
+              label: {{asc_year.5}},
               data:{{sorted_perc20}},
               borderColor: theme_g6,
-              //backgroundColor: theme_g6,
+              backgroundColor: theme_g6,
               hoverborderColor: theme_g6,
               hoverBackgroundColor: theme_g6,
               }]
@@ -1417,16 +1444,50 @@
 
       //chartbanyaktahun
       var myBarChart = new Chart(ctx3, {
-          type: 'line',
+          type: 'bar',
           data: data1,
           options: {    
-              barValueSpacing: 20
-              // parsing: {
-              //     xAxisKey: 'daerah',
-              //     yAxisKey: 'bilangan.vac_done'
-              // }
-          }
-      });
+            barValueSpacing: 20,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              yAxes: [{
+                gridLines: {
+                  color: '#dee2e6',
+                },
+                ticks: {
+                  suggestedMin: 0,
+                  suggestedMax: 100,
+                  beginAtZero: true,
+                  padding: 5,
+                  fontSize: 12,
+                  fontColor: '#4C5958',
+                  lineHeight: 5,
+                  fontStyle: 'normal',
+                  fontFamily: "Open Sans",
+                  //callback: function(value, index, ticks) {
+                    //return '%' + value;
+                },
+              }, ],
+              xAxes: [{
+                gridLines: {
+                  //zeroLineColor: 'rgba(0,0,0,0)',
+                  //display: false,
+                },
+                ticks: {
+                  padding: 10,
+                  //align: 'center',
+                  fontSize: 13,
+                  fontColor: '#4C5958',
+                  //lineHeight: 2,
+                  fontStyle: 'normal',
+                  fontFamily: "Open Sans",
+                },
+              }, ],
+            },
+          },
+        }
+      );
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;

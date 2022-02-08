@@ -103,6 +103,28 @@ class processData:
             
         return data_able, data_done
 
+    def daerah_vac_able(sorted_daerah, vaksin):
+        able=[]
+        dist=[]
+        for i in vaksin:
+                if i.year == 2020:
+                    dist.append(i.district)
+                    able.append(i.vac_able)
+        dict = {}
+        for i in dist:
+            for j in able:
+                dict[i] = j
+                able.remove(j)
+                break
+        re_dict = {k: dict[k] for k in sorted_daerah}
+        sorted_able=[]
+        for key in re_dict:
+                sorted_able.append(re_dict[key])
+        # d = {'distr':dist,'able':able}
+        # df = pd.DataFrame(d)
+        # print(reordered_dict)
+        return sorted_able
+
     def get_vac_perc(vaksin,tahun):
         data=[]
         for i in vaksin:
@@ -146,10 +168,11 @@ class processData:
                 dict[i] = j
                 perc_year.remove(j)
                 break
-        # print(dict)
+        # print('dict', dict)
+        
         sorted_daerah = sorted_list20[0]
-        # print(sorted_daerah)
         # print('sorted daerah',sorted_daerah) 
+        
         sorted_percentage=[]
         for k in range(len(sorted_daerah)):
             for key in dict:
@@ -175,18 +198,34 @@ class processData:
         return jsonData
 
     def sum_year(vaksin):
+
         df = pd.DataFrame(list(vaksin.values()))
-        #print(df.head())
+        # print('head')
+        # print(df.head())
+        
         sum_by_year = df.groupby('year').sum()
-        #print(sum_by_year)
-        year = df.year.values
-        v_able_sum = sum_by_year.vac_able.values
-        v_done_sum = sum_by_year.vac_done.values
+        # print('sum by year')
+        # print(sum_by_year)
+        
+        year = df['year'].unique().tolist()
+        year = sorted(year)
+        v_able_sum_no_com = sum_by_year.vac_able.values
+        v_done_sum_no_com = sum_by_year.vac_done.values
+        v_able_sum = sum_by_year['vac_able'].tolist()
+        v_done_sum = sum_by_year['vac_done'].tolist()
 
-        whole_perc = np.around((v_done_sum/v_able_sum)*100,2).tolist()
-        print(v_able_sum,v_done_sum,whole_perc,year)
-        return v_able_sum, v_done_sum, whole_perc , year
 
+        whole_perc = np.around((v_done_sum_no_com/v_able_sum_no_com)*100,2).tolist()
+        # print(v_able_sum,v_done_sum, whole_perc, year)
+        return v_able_sum, v_done_sum, whole_perc, year
+
+    def sum(list):
+        total=0
+        for ele in range(0, len(list)):
+            total = total + list[ele]
+        # print(total)
+        return total
+    
     def dataforpredict(vaksin): 
         df = pd.DataFrame(list(vaksin.objects.all().values()))
         return df

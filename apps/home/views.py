@@ -25,6 +25,8 @@ def index(request):
 
         # distinct_year = Vaksinasi.objects.all().values_list('year', flat=True).distinct()
         # print(distinct_year)
+        # distinct_daerah = Vaksinasi.objects.all().values_list('district', flat=True).distinct()
+        # print(distinct_daerah)
        
         v_able_sum, v_done_sum, whole_perc, year = processData.sum_year(vaksin)
         
@@ -48,7 +50,7 @@ def index(request):
         # sorted_list18 = processData.sorted_data(daerah, v_perc18)
         # sorted_list19 = processData.sorted_data(daerah, v_perc19)
         sorted_list20 = processData.sorted_data(daerah, v_perc20)
-
+        
         #sorted percentage follow daerah 2020 (daerah 2020, value ascending)
         sorted_perc15 = processData.sorted_not20(daerah, v_perc15, sorted_list20)
         sorted_perc16 = processData.sorted_not20(daerah, v_perc16, sorted_list20)
@@ -56,10 +58,17 @@ def index(request):
         sorted_perc18 = processData.sorted_not20(daerah, v_perc18, sorted_list20)
         sorted_perc19 = processData.sorted_not20(daerah, v_perc19, sorted_list20)
 
+        sorted_daerah = sorted_list20[0]
+        # print('sorted daerah', sorted_daerah)
+        v_able_daerah = processData.daerah_vac_able(sorted_daerah,vaksin)
+        print(v_able_daerah)
         diff_whole_perc_current = round(whole_perc[-1] - whole_perc[-2], 2)
         diff_vac_able_current = round(v_able_sum[-1] - v_able_sum[-2], 2)
         diff_vac_done_current = round(v_done_sum[-1] - v_done_sum[-2], 2)
 
+        sum_able = processData.sum(v_able_sum)
+        sum_done = processData.sum(v_done_sum)
+        notyet_v = sum_able-sum_done
         # print(sorted_perc18)
         # print(sorted_perc19)
         # print(sorted_list20[0][1])
@@ -82,8 +91,11 @@ def index(request):
             'sorted_perc18': sorted_perc18,
             'sorted_perc19': sorted_perc19,
             'sorted_perc20': sorted_list20[1],
-            'v_able_sum' : v_able_sum, 
-            'v_done_sum' : v_done_sum,
+            'v_able_sum': v_able_sum, 
+            'v_done_sum': v_done_sum,
+            'sum_able': sum_able,
+            'sum_done': sum_done,
+            'notyet_v': notyet_v,
             'asc_year': year,
             'whole_perc' : whole_perc,
             'latest_v_able':v_able_sum[-1],
@@ -95,7 +107,8 @@ def index(request):
             'highest_daerah': sorted_list20[0][-1],
             'fastest': sorted_list20[1][-1],
             'lowest_daerah': sorted_list20[0][0],
-            'slowest': sorted_list20[1][0]
+            'slowest': sorted_list20[1][0],
+            'v_able_daerah': v_able_daerah
             }
 
     #context:
