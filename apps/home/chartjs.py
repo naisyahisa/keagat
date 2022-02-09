@@ -183,19 +183,19 @@ class processData:
         # print(len(sorted_percentage))
         return sorted_percentage
         
-    def get_json(vaksin,tahun):
-        data=[]
-        # for feature in vaksin:
-        #     item = {"daerah": feature.district}
-        item = {}
-        for attribute in vaksin:
+    # def get_json(vaksin,tahun):
+    #     data=[]
+    #     # for feature in vaksin:
+    #     #     item = {"daerah": feature.district}
+    #     item = {}
+    #     for attribute in vaksin:
             
-            if attribute.year==tahun:
-                item = {'daerah':attribute.district,'bilangan':{'vac_able':attribute.vac_able,'vac_done':attribute.vac_done}}
-                data.append(item)
+    #         if attribute.year==tahun:
+    #             item = {'daerah':attribute.district,'bilangan':{'vac_able':attribute.vac_able,'vac_done':attribute.vac_done}}
+    #             data.append(item)
 
-        jsonData=json.dumps(data)
-        return jsonData
+    #     jsonData=json.dumps(data)
+    #     return jsonData
 
     def sum_year(vaksin):
 
@@ -226,7 +226,11 @@ class processData:
         # print(total)
         return total
     
-    def dataforpredict(vaksin): 
-        df = pd.DataFrame(list(vaksin.objects.all().values()))
-        return df
-         
+    # def dataforpredict(vaksin): 
+    #     data_able, data_done, pred_perc , year = processData.sum_year(vaksin)
+        
+        
+    #     year = year.append(2021)
+    #     data_able= data_able.append(1360201)
+    #     data_done= data_done.append(1346328)
+    #     return data_able, data_done,year

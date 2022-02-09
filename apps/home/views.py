@@ -22,7 +22,8 @@ def index(request):
         daerah = processData.get_label(vaksin)
        
         v_able_sum, v_done_sum, whole_perc, year = processData.sum_year(vaksin)
-        
+
+        # print(pred_able, pred_done)
         v_doneAble15 = processData.get_vac_done_able(vaksin,2015)
         v_doneAble16 = processData.get_vac_done_able(vaksin,2016)
         v_doneAble17 = processData.get_vac_done_able(vaksin,2017)
@@ -49,7 +50,7 @@ def index(request):
         sorted_daerah = sorted_list20[0]
         # print('sorted daerah', sorted_daerah)
         v_able_daerah = processData.daerah_vac_able(sorted_daerah,vaksin)
-        print(v_able_daerah)
+        
         diff_whole_perc_current = round(whole_perc[-1] - whole_perc[-2], 2)
         diff_vac_able_current = round(v_able_sum[-1] - v_able_sum[-2], 2)
         diff_vac_done_current = round(v_done_sum[-1] - v_done_sum[-2], 2)
@@ -58,6 +59,7 @@ def index(request):
         sum_done = processData.sum(v_done_sum)
         notyet_v = sum_able-sum_done
        
+        
         context = {
             'segment': 'index',
             'dist':dist[0],
