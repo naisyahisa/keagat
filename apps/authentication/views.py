@@ -56,8 +56,12 @@ def register_user(request):
 def help_form(request):
     submitted = False
     if request.method == "POST":
+        print("masuk method post")
         form = HelpForm(request.POST)
+        print('form', form)
         if form.is_valid():
+            print("masuk save data")
+            print(form)
             form.save()
             #submitting true to the redirect to GET, pass down
             return HttpResponseRedirect('/helpdesk?submitted=True')
@@ -65,6 +69,7 @@ def help_form(request):
     else:
         form = HelpForm
         if 'submitted' in request.GET:
+            print("masuk submitted == True")
             submitted = True
 
     return render(request, "home/helpdesk.html", {'form': form, 'submitted': submitted})
