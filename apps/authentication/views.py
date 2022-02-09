@@ -2,9 +2,12 @@ from django import template
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, SignUpForm
+from django.urls import reverse_lazy
+from matplotlib.style import context
+from .forms import LoginForm, PasswordChangingForm, SignUpForm, HelpForm
 from django.contrib.auth.decorators import login_required
-from .forms import HelpForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -64,7 +67,9 @@ def help_form(request):
             print(form)
             form.save()
             #submitting true to the redirect to GET, pass down
-            return HttpResponseRedirect('/helpdesk?submitted=True')
+            return HttpResponseRedirect('home/helpdesk?submitted=True')
+        else:
+            print('Maklumat tidak sah')
     #did not fill out the form
     else:
         form = HelpForm
@@ -73,3 +78,11 @@ def help_form(request):
             submitted = True
 
     return render(request, "home/helpdesk.html", {'form': form, 'submitted': submitted})
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    # form_class = PasswordChangeForm
+    success_url = reverse_lazy('password_success')
+
+def password_success(request):
+    return render(request, 'accounts/password_success.html', {})

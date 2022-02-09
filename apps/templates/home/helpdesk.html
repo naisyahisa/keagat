@@ -37,17 +37,19 @@
                     <div class="mb-3">
                       {{form.email_user}}
                     </div>
+                    <span class="text-error">{{ form.email_user.errors }}</span>
+
                     <!-- <label>Username</label> -->
                     <div class="mb-3">
                       {{form.email_subject}}
                     </div>
-                    <!-- <span class="text-error">{{ form.help_status.errors }}</span> -->
+                    <span class="text-error">{{ form.email_subject.errors }}</span>
 
                     <!-- <label>Email</label> -->
                     <div class="mb-3">
                       {{ form.email_content }}
                     </div>
-                    <!-- <span class="text-error">{{ form.email_subject.errors }}</span> -->
+                    <span class="text-error">{{ form.email_content.errors }}</span>
                     
                     <!-- <label>Password</label> -->
                     <!-- <div class="mb-3">
@@ -73,6 +75,7 @@
                   </form>
                 </div>
               {% endif %}
+              <!-- <ul class="errorlist"><li>done<ul class="errorlist"><li>This field is required.</li></ul></li></ul> -->
             </div>
           </div>
           <div class="col-md-6">

@@ -1,6 +1,7 @@
+from pyexpat import model
 from xml.dom.minidom import Attr
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from matplotlib import widgets
@@ -38,6 +39,13 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
+    jawatan = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Jawatan",
+                "class": "form-control"
+            }
+        ))
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
@@ -55,10 +63,11 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'jawatan', 'password1', 'password2')
 
 class HelpForm(ModelForm):
-    help_status =  forms.CharField(widget=forms.HiddenInput(),initial='Baru')
+    help_status =  forms.CharField(
+        widget=forms.HiddenInput(),initial='Baru')
     # if User.is_active:
     #         user = User.objects.email
     # print(user)
@@ -80,11 +89,10 @@ class HelpForm(ModelForm):
         }
     ))
     email_user = forms.EmailField(
-    widget=forms.TextInput(
+    widget=forms.EmailInput(
         attrs={
             "placeholder": "E-mel",
             "class": "form-control",
-            "rows":3 
         }
     ))
     
@@ -107,3 +115,16 @@ class HelpForm(ModelForm):
             # 'email_content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Kandungan', 'rows':3})
             # 'date_created': forms.DateField(auto_now = True)
         # }
+class PasswordChangingForm(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'type': 'password', 'placeholder':'Kata laluan lama'}))
+    new_password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control', 'type': 'password','placeholder':'Kata laluan baru'}))
+    new_password2 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control', 'type': 'password', 'placeholder':'Pengesahan kata laluan baru'}))
+
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')
+        labels = {
+                'old_password':"",
+                'new_password1':"",
+                'new_password2':""
+            }        
