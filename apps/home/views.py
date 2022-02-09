@@ -80,6 +80,7 @@ def index(request):
             'sorted_perc20': sorted_list20[1],
             'v_able_sum': v_able_sum, 
             'v_done_sum': v_done_sum,
+            'jangkaan': v_done_sum[-1],
             'sum_able': sum_able,
             'sum_done': sum_done,
             'notyet_v': notyet_v,

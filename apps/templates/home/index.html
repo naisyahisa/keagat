@@ -119,8 +119,8 @@
                   <canvas id="myChart" class="chart-canvas" height="300px"></canvas>
                 </div>
               </div>
-              <h6 class="ms-2 mt-3 mb-0"> Jumlah layak tapi belum divaksinasi </h6>
-              <p class="text-sm ms-2"> <span class="font-weight-bolder">{{notyet_v}}</span> bilangan kanak-kanak </p>
+              <h6 class="ms-2 mt-3 mb-0"> Jangkaan kanak-kanak yang layak divaksinasi pada tahun 2021 ialah </h6>
+              <p class="text-sm ms-2"> <span class="font-weight-bolder">{{jangkaan}}</span> bilangan kanak-kanak </p>
             </div>
           </div>
         </div>
@@ -128,13 +128,13 @@
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
         // setup 
-        const down = (ctx,value) => ctx.p1.parsed.x > 3 ? value : undefined;
+        const down = (ctx,value) => ctx.p1.parsed.x > 5 ? value : undefined;
         
         const data = {
           //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
           labels:{{asc_year}},
           datasets: [{
-            label: 'Weekly Sales',
+            label: 'Jangkaan populasi kanak-kanak layak divaksin',
             //data: [18, 12, 6, 9, 12, 3, 9],
             data: {{v_done_sum}},
             backgroundColor: [
@@ -170,10 +170,38 @@
           data,
           options: {
             scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
+              yAxes: [{
+                gridLines: {
+                  color: '#dee2e6',
+                },
+                ticks: {
+                  beginAtZero: true,
+                  padding: 10,
+                  fontSize: 12,
+                  fontColor: '#4C5958',
+                  lineHeight: 5,
+                  fontStyle: 'normal',
+                  fontFamily: "Open Sans",
+                  //callback: function(value, index, ticks) {
+                    //return '%' + value;
+                },
+              }, ],
+              xAxes: [{
+                gridLines: {
+                  //zeroLineColor: 'rgba(0,0,0,0)',
+                  //display: false,
+                },
+                ticks: {
+                  padding: 10,
+                  //align: 'center',
+                  fontSize: 13,
+                  fontColor: '#4C5958',
+                  //lineHeight: 2,
+                  fontStyle: 'normal',
+                  fontFamily: "Open Sans",
+                },
+              }, ],
+            },
           }
         };
     
