@@ -28,25 +28,25 @@
                 Aduan anda telah diterima.
               {% else %}
                 <div class="card-body">
-                  <form role="form text-left" method="post" action="">
+                  <form role="form text-left" method="post" action="{% url 'helpdesk' %}">
                     {% csrf_token %}
                       <!-- {{user.id}} -->
-                      <!-- {{form.as_p}} -->
+                      {{form.as_p}}
                     
                     <!-- <label>Username</label> -->
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                       {{form.email_user}}
-                    </div>
+                    </div> -->
                     <!-- <label>Username</label> -->
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                       {{form.email_subject}}
-                    </div>
+                    </div> -->
                     <!-- <span class="text-error">{{ form.help_status.errors }}</span> -->
 
                     <!-- <label>Email</label> -->
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                       {{ form.email_content }}
-                    </div>
+                    </div> -->
                     <!-- <span class="text-error">{{ form.email_subject.errors }}</span> -->
                     
                     <!-- <label>Password</label> -->

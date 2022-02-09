@@ -58,12 +58,13 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
 class HelpForm(ModelForm):
-    help_status =  forms.CharField(widget=forms.HiddenInput(),initial='Baru')
+    help_status =  forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),initial='Baru')
     # if User.is_active:
     #         user = User.objects.email
     # print(user)
     # author = forms.EmailField(User.email)
-    email_subject = forms.CharField(
+   
+    help_subject = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Subjek",
@@ -71,7 +72,7 @@ class HelpForm(ModelForm):
                 
             }
         ))
-    email_content = forms.CharField(
+    help_content = forms.CharField(
     widget=forms.Textarea(
         attrs={
             "placeholder": "Komen",
@@ -79,18 +80,12 @@ class HelpForm(ModelForm):
             "rows":3 
         }
     ))
-    email_user = forms.EmailField(
-    widget=forms.TextInput(
-        attrs={
-            "placeholder": "E-mel",
-            "class": "form-control",
-            "rows":3 
-        }
-    ))
+
     
     class Meta:
         model = Helpdesk
-        fields = ('email_subject', 'email_content', 'email_user')
+        # exclude = ('help_author')
+        fields = ('help_status','help_subject', 'help_content')
         # labels = {
         #     'email_subject': '',
         #     'email_content': ''

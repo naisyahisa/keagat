@@ -93,7 +93,7 @@ def index(request):
             }
 
    
-    html_template = loader.get_template('home/index.html')
+    # html_template = loader.get_template('home/index.html')
     # return HttpResponse(html_template.render(context, request))
     return render(request, 'home/index.html', context)
 

@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 from django.contrib.auth.decorators import login_required
 from .forms import HelpForm
+from .models import Helpdesk
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -54,22 +55,30 @@ def register_user(request):
 
 @login_required(login_url="/login/")
 def help_form(request):
-    submitted = False
+    #submitted = False
     if request.method == "POST":
         print("masuk method post")
         form = HelpForm(request.POST)
         print('form', form)
         if form.is_valid():
             print("masuk save data")
-            print(form)
-            form.save()
+            #form.save()
+            user = request.user
+            status = form.cleaned_data.get("help_status")
+            subject = form.cleaned_data.get("help_subject")
+            content = form.cleaned_data.get("help_content")
+            
+            helpdesk = Helpdesk.objects.create(help_author = user,help_status=status,help_subject = subject, help_content = content)
+            print(helpdesk)
+            
             #submitting true to the redirect to GET, pass down
-            return HttpResponseRedirect('/helpdesk?submitted=True')
+            return HttpResponseRedirect('/Thankyou/')#'/helpdesk?submitted=True')
+        print("form x valid")
     #did not fill out the form
     else:
-        form = HelpForm
-        if 'submitted' in request.GET:
-            print("masuk submitted == True")
-            submitted = True
+        form = HelpForm()
+        # if 'submitted' in request.GET:
+        
+        #     submitted = True
 
-    return render(request, "home/helpdesk.html", {'form': form, 'submitted': submitted})
+    return render(request, "home/helpdesk.html", {'form': form}) #, 'submitted': submitted})
