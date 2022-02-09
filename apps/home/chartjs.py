@@ -226,6 +226,22 @@ class processData:
         # print(total)
         return total
     
+    def helpChart(help):
+        
+        count1 = 0
+        count2 = 0
+        count3 = 0
+        for i in help:
+            if i.help_status == 'Baru':
+                count1 +=1
+            elif i.help_status == 'Selesai':
+                count2 +=1
+            else:
+                count3 += 1
+        # print('count', count)
+        return count1, count2, count3
+            
+
     def dataforpredict(vaksin): 
         df = pd.DataFrame(list(vaksin.objects.all().values()))
         return df

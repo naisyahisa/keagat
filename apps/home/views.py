@@ -10,6 +10,8 @@ from django.template import loader
 from django.views.generic import ListView, DetailView
 from django.urls import reverse
 from matplotlib.style import context
+
+from apps.authentication.models import Helpdesk
 from .models import Vaksinasi
 from .chartjs import processData
 from .decorators import allowed_users, unauthenticated_user
@@ -102,7 +104,13 @@ def index(request):
 
 @allowed_users(allowed_roles=['helpdesk_staff','admin_staff'])
 def helpdesk_inbox(request):
-    context = {}
+    help = Helpdesk.objects.all()
+    baru, selesai, lain = processData.helpChart(help)
+    context = {
+        'baru': baru,
+        'selesai': selesai,
+        'lain': lain
+    }
     return render(request, 'home/billing.html',context)
 
 @login_required(login_url="/login/")
