@@ -74,6 +74,8 @@
         <li class="nav-item mt-3">
           <h6 class="ps-4 text-uppercase text-xs font-weight-bolder opacity-6">Other responsibility(s)</h6>
         </li>
+        {% for group in request.user.groups.all %}
+        {% if group.name == 'admin_staff' %}
         <li class="nav-item mb-1">
           <a class="nav-link {% if 'register' in segment %} active {% endif %} " href="{% url 'register' %}">
             <div class="icon icon-shape icon-xs shadow border-radius-sm bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
@@ -94,6 +96,8 @@
             <span class="nav-link-text ms-1">Daftar Akaun</span>
           </a>
         </li>
+        {% endif %}
+        {% endfor %}
         <li class="nav-item mb-1">
           <a class="nav-link {% if 'helpdesk' in segment %} active {% endif %}" href="/helpdesk.html">
             <div class="icon icon-shape icon-xs shadow border-radius-sm bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
@@ -116,6 +120,7 @@
             <span class="nav-link-text ms-1">Helpdesk</span>
           </a>
         </li>
+        
         <!-- <li class="nav-item mb-1">
           <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile.html">
             <div class="icon icon-shape icon-xs shadow border-radius-sm bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
@@ -136,12 +141,16 @@
             </div>
             <span class="nav-link-text ms-1">Profile</span>
           </a>
-        </li>
+        </li>-->
+
+        {% for group in request.user.groups.all %}
+         {% if group.name == 'helpdesk_staff' or group.name == 'admin_staff' %}
+        
         <li class="nav-item mb-1">
-          <a class="nav-link {% if 'billing' in segment %} active {% endif %}" href="/billing.html">
+          <a class="nav-link {% if 'billing' in segment %} active {% endif %}" href="{% url 'inbox' %}">
             <div class="icon icon-shape icon-xs shadow border-radius-sm bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>credit-card</title>
+                <title>Helpdesk Inbox</title>
                 <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="Rounded-Icons" transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -154,10 +163,13 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">Helpdesk (Inbox)</span>
           </a>
         </li>
-        <li class="nav-item mb-1">
+        {% endif %}
+        {% endfor %}
+        
+        <!--<li class="nav-item mb-1">
           <a class="nav-link  " href="/login.html">
             <div class="icon icon-shape icon-xs shadow border-radius-sm bg-gradient-light text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

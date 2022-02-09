@@ -7,7 +7,7 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
-
+    path('inbox/', views.helpdesk_inbox, name='inbox'),
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
 

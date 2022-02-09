@@ -8,3 +8,4 @@ from .models import Vaksinasi
 # Register your models here.
 
 admin.site.register(Vaksinasi)
+admin.site.site_header = 'Keagat Administration'
