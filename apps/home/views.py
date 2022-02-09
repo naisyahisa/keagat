@@ -7,7 +7,11 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.views.generic import ListView, DetailView
 from django.urls import reverse
+from matplotlib.style import context
+
+from apps.authentication.models import Helpdesk
 from .models import Vaksinasi
 from .chartjs import processData
 from .decorators import allowed_users, unauthenticated_user
@@ -102,7 +106,13 @@ def index(request):
 
 @allowed_users(allowed_roles=['helpdesk_staff','admin_staff'])
 def helpdesk_inbox(request):
-    context = {}
+    help = Helpdesk.objects.all()
+    baru, selesai, lain = processData.helpChart(help)
+    context = {
+        'baru': baru,
+        'selesai': selesai,
+        'lain': lain
+    }
     return render(request, 'home/billing.html',context)
 
 @login_required(login_url="/login/")
@@ -135,3 +145,17 @@ def pages(request):
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
 
+# def post(request):
+
+#     post = Post.objects.all()
+#     context = {
+#         'posts': post.title,
+#     }
+#     print('post request',context)
+#     return render(request,'post.html', context)
+
+# class PostView(ListView):
+#     model = Post
+#     template_name = 'post.html'
+#     context_object_name = 'posts'
+#     print('context object name', context_object_name)

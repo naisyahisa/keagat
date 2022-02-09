@@ -371,10 +371,10 @@
               <div class="row">
                 <div class="col-lg-6 col-7">
                   <h6>Progres Vaksinasi Daerah (Tahun semasa)</h6>
-                  <p class="text-sm mb-0">
+                  <!-- <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
                     <span class="font-weight-bold ms-1">30 pertambahan</span> bulan ini
-                  </p>
+                  </p> -->
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
                   <div class="dropdown float-lg-end pe-4">
@@ -397,7 +397,7 @@
                       <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Daerah</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Populasi</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Terima Vaksin</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Bertanggungjawab</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Progres</th>
                         <th></th>
                       </tr>
@@ -418,14 +418,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.0}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">working</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.0}} </span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
                             <span class="me-2 text-xs font-weight-bold">{{perc.0}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.0}}%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.0}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -451,14 +451,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.1}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold"> PKD {{sorted_daerah.1}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.1}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.1}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -484,14 +484,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.2}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">canceled</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.2}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">30%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.2}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: {{perc.2}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -517,14 +517,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.3}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">canceled</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.3}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">0%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.3}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: {{perc.3}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -550,14 +550,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.4}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">working</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.4}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">80%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.4}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 80%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: {{perc.4}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -583,14 +583,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.5}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.5}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.5}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.5}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -616,14 +616,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.6}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.6}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.6}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.6}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -649,14 +649,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.7}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.7}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.7}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.7}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -682,14 +682,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.8}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.8}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.8}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.8}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -715,14 +715,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.9}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.9}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.9}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.9}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -748,14 +748,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.10}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.10}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">{{sorted_perc20.10}}</span>
+                            <span class="me-2 text-xs font-weight-bold">{{sorted_perc20.10}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{sorted_perc20.10}};"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{sorted_perc20.10}}%;"></div>
                               </div>
                             </div>
                           </div>
@@ -781,14 +781,14 @@
                           <p class="text-sm font-weight-bold mb-0">{{v_able_daerah.11}}</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold">done</span>
+                          <span class="text-xs font-weight-bold">PKD {{sorted_daerah.11}}</span>
                         </td>
                         <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <span class="me-2 text-xs font-weight-bold">{{perc.11}} %</span>
                             <div>
                               <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{perc.11}}%;"></div>
                               </div>
                             </div>
                           </div>
