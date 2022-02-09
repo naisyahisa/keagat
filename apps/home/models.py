@@ -17,9 +17,9 @@ class Vaksinasi(models.Model):
 #class = table, attribute = fields
 class Post(models.Model):
     #field, with restriction
-    title = models.CharField(max_length=100)
+    title = models.CharField('Post title', max_length=250)
     #lines of text no restr.
-    content = models.TextField()
+    content = models.TextField('Content', max_length=500)
     date_posted = models.DateTimeField(default=timezone.now)
     #passed in the user table, on-delete if the user got deleted, also posts got deleted
     author = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -6,17 +6,26 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<script>
+  let userlink = '{{user.profile.image.url}}'
+  console.log(userlink, typeof(userlink))
+  //function myFunction() {
+    //document.getElementsByClassName("w-100 border-radius-lg shadow-sm")[0].setAttribute("src", user); 
+  //}
+  //var user1 = Object.values(user)
+</script>
 
     <div class="container-fluid">
-      <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('/static/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+      <!-- /static/assets/img/curved-images/curved0.jpg -->
+      <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('{{user.profile.bg_image.url}}'); background-position-y: 50%;">
         <span class="mask bg-gradient-primary opacity-6"></span>
       </div>
       <div class="card card-body blur shadow-blur mx-4 mt-n6">
         <div class="row gx-4">
           <div class="col-auto">
-            <div class="avatar avatar-xl position-relative">
+            <div class="avatar avatar-xl position-relative ">
               <!-- /static/assets/img/bruce-mars.jpg -->
-              <img src="{{user.profile.image.url}}" alt="{{user.username}}" class="w-100 border-radius-lg shadow-sm">
+              <img src= "{{user.profile.image.url}}" alt="{{user.username}}" class="border-radius-lg shadow-sm" style="width: 75px; height: 100px; object-fit: cover;">
               <a href="javascript:;" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2">
                 <i class="fa fa-pen top-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Image"></i>
               </a>
@@ -28,7 +37,7 @@
                 {{user.username}}
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
-                CEO / Co-Founder
+                test
               </p>
             </div>
           </div>
