@@ -7,6 +7,12 @@ from django.forms import ModelForm
 from matplotlib import widgets
 from .models import Helpdesk
 
+GROUP_CHOICES =(
+    ("staff","Staf"),
+    ("helpdesk_staff","Staf Helpdesk"),
+    ("admin_staff","Admin"),
+)
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
@@ -39,13 +45,7 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
-    jawatan = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Jawatan",
-                "class": "form-control"
-            }
-        ))
+    group_staff = forms.ChoiceField(widget=forms.Select, choices = GROUP_CHOICES)
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
@@ -63,16 +63,12 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'jawatan', 'password1', 'password2')
+        fields = ('username', 'email', 'group_staff', 'password1', 'password2')
 
 class HelpForm(ModelForm):
-    help_status =  forms.CharField(
-        widget=forms.HiddenInput(),initial='Baru')
-    # if User.is_active:
-    #         user = User.objects.email
-    # print(user)
-    # author = forms.EmailField(User.email)
-    email_subject = forms.CharField(
+    help_status =  forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),initial='Baru')
+   
+    help_subject = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Subjek",
@@ -80,7 +76,7 @@ class HelpForm(ModelForm):
                 
             }
         ))
-    email_content = forms.CharField(
+    help_content = forms.CharField(
     widget=forms.Textarea(
         attrs={
             "placeholder": "Komen",
@@ -88,33 +84,12 @@ class HelpForm(ModelForm):
             "rows":3 
         }
     ))
-    email_user = forms.EmailField(
-    widget=forms.EmailInput(
-        attrs={
-            "placeholder": "E-mel",
-            "class": "form-control",
-        }
-    ))
     
     class Meta:
         model = Helpdesk
-        fields = ('email_subject', 'email_content', 'email_user')
-        # labels = {
-        #     'email_subject': '',
-        #     'email_content': ''
-        # }
-
-        # if User.is_active:
-        #     user = User.email
-        # choice_value1 = [('1',user),()]
-        # choice_value2 = [('1','Baru'),()]
-        # widgets = {
-        #     'user_email': forms.ChoiceField(choice= choice_value1 , attrs={'class':'form-control', 'placeholder': 'E-mel'}),
-        #     'help_status': forms.ChoiceField(choice= choice_value2 , attrs={'class':'form-control', 'placeholder': 'Baru'}),
-            # 'email_subject': forms.CharField(attrs={'class': 'form-control', 'placeholder': 'Subjek'}),
-            # 'email_content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Kandungan', 'rows':3})
-            # 'date_created': forms.DateField(auto_now = True)
-        # }
+        # exclude = ('help_author')
+        fields = ('help_status','help_subject', 'help_content')
+        
 class PasswordChangingForm(PasswordChangeForm):
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'type': 'password', 'placeholder':'Kata laluan lama'}))
     new_password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control', 'type': 'password','placeholder':'Kata laluan baru'}))

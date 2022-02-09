@@ -2,7 +2,6 @@
 
 {% block title %} Helpdesk {% endblock title %}
 
-<!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
@@ -20,57 +19,22 @@
                     {% if msg %}
                         {{ msg | safe }}
                     {% else %}
-                        Hantar sebarang aduan berkenaan dengan sistem dan visualisasi data.
-                    {% endif %}                 
+                       
+                    {% endif %}      
+                    {% if submitted %}
+                    Aduan anda telah disimpan.
+                    {% else %}           
                 </p>
               </div>
-              {% if submitted %}
-                Aduan anda telah diterima.
-              {% else %}
+              
                 <div class="card-body">
-                  <form role="form text-left" method="post" action="">
+                  <form role="form text-left" method="post" action="{% url 'helpdesk' %}">
                     {% csrf_token %}
-                      <!-- {{user.id}} -->
-                      <!-- {{form.as_p}} -->
+                      
+                      {{form.as_p}}
                     
-                    <!-- <label>Username</label> -->
-                    <div class="mb-3">
-                      {{form.email_user}}
-                    </div>
-                    <span class="text-error">{{ form.email_user.errors }}</span>
-
-                    <!-- <label>Username</label> -->
-                    <div class="mb-3">
-                      {{form.email_subject}}
-                    </div>
-                    <span class="text-error">{{ form.email_subject.errors }}</span>
-
-                    <!-- <label>Email</label> -->
-                    <div class="mb-3">
-                      {{ form.email_content }}
-                    </div>
-                    <span class="text-error">{{ form.email_content.errors }}</span>
-                    
-                    <!-- <label>Password</label> -->
-                    <!-- <div class="mb-3">
-                      {{ form.password1 }}
-                    </div>
-                    <span class="text-error">{{ form.password1.errors }}</span> -->
-
-                    <!-- <label>Password Check</label> -->
-                    <!-- <div class="mb-3">
-                      {{ form.password2 }}
-                    </div>
-                    <span class="text-error">{{ form.password2.errors }}</span> -->
-
-                    <!-- <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
-                      <label class="form-check-label" for="rememberMe">Terms</label>
-                    </div> -->
                     <div class="text-center">
                       <input type="submit" value="Hantar" class="btn bg-gradient-info w-100 mt-3 mb-0">
-
-                      <!-- <button type="submit" name="register" class="btn bg-gradient-info w-100 mt-3 mb-0">Daftar</button> -->
                     </div>
                   </form>
                 </div>

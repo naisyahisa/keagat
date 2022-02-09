@@ -12,23 +12,16 @@ from django.urls import reverse
 from matplotlib.style import context
 from .models import Vaksinasi
 from .chartjs import processData
+from .decorators import allowed_users, unauthenticated_user
 
 @login_required(login_url="/login/")
 def index(request):
     if request.method == "GET":    
         vaksin = Vaksinasi.objects.all()
-        # print(vaksin)
+        
         dist = processData.firstChart(vaksin)
-        # print("Here is dist:")
-        # print(dist)
 
         daerah = processData.get_label(vaksin)
-        # print("daerah:",daerah)
-
-        # distinct_year = Vaksinasi.objects.all().values_list('year', flat=True).distinct()
-        # print(distinct_year)
-        # distinct_daerah = Vaksinasi.objects.all().values_list('district', flat=True).distinct()
-        # print(distinct_daerah)
        
         v_able_sum, v_done_sum, whole_perc, year = processData.sum_year(vaksin)
         
@@ -46,11 +39,6 @@ def index(request):
         v_perc19 = processData.get_vac_perc(vaksin,2019)
         v_perc20 = processData.get_vac_perc(vaksin,2020)
 
-        # sorted_list15 = processData.sorted_data(daerah, v_perc15)
-        # sorted_list16 = processData.sorted_data(daerah, v_perc16)
-        # sorted_list17 = processData.sorted_data(daerah, v_perc17)   
-        # sorted_list18 = processData.sorted_data(daerah, v_perc18)
-        # sorted_list19 = processData.sorted_data(daerah, v_perc19)
         sorted_list20 = processData.sorted_data(daerah, v_perc20)
         
         #sorted percentage follow daerah 2020 (daerah 2020, value ascending)
@@ -71,9 +59,6 @@ def index(request):
         sum_able = processData.sum(v_able_sum)
         sum_done = processData.sum(v_done_sum)
         notyet_v = sum_able-sum_done
-        # print(sorted_perc18)
-        # print(sorted_perc19)
-        # print(sorted_list20[0][1])
        
         context = {
             'segment': 'index',
@@ -81,10 +66,6 @@ def index(request):
             'perc':dist[1],
             'year':dist[2],
             'vaksin':vaksin,
-            # 'daerah':daerah,
-            # 'v_done19':v_doneable19,
-            # 'v_done18':v_doneable18,
-            # 'v_done20':v_doneable20,
             #sorted value 
             'sorted_daerah': sorted_list20[0],
             'sorted_perc15': sorted_perc15,
@@ -113,13 +94,16 @@ def index(request):
             'v_able_daerah': v_able_daerah
             }
 
-    #context:
-    #{'segment': 'index', 'vaksin': <QuerySet [<Vaksinasi: Baling-2018-157-100>, 
-    # <Vaksinasi: Sik-2018-109-98>, <Vaksinasi: Alor Setar-2018-318-210>, 
-    # <Vaksinasi: Langkawi-2020-3926-2136>, '...(remaining elements truncated)...']>}
-    html_template = loader.get_template('home/index.html')
+   
+    # html_template = loader.get_template('home/index.html')
     # return HttpResponse(html_template.render(context, request))
     return render(request, 'home/index.html', context)
+
+
+@allowed_users(allowed_roles=['helpdesk_staff','admin_staff'])
+def helpdesk_inbox(request):
+    context = {}
+    return render(request, 'home/billing.html',context)
 
 @login_required(login_url="/login/")
 def pages(request):

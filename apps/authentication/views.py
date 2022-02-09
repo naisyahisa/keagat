@@ -6,8 +6,11 @@ from django.urls import reverse_lazy
 from matplotlib.style import context
 from .forms import LoginForm, PasswordChangingForm, SignUpForm, HelpForm
 from django.contrib.auth.decorators import login_required
+from .forms import HelpForm
+from .models import Helpdesk
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import Group, User
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -41,7 +44,12 @@ def register_user(request):
             form.save()
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
+            group_staff = form.cleaned_data.get("group_staff")
             user = authenticate(username=username, password=raw_password)
+
+            new_group = Group.objects.get(name = group_staff)
+            newuser = User.objects.get(username = username)
+            newuser.groups.add(new_group)
 
             msg = 'Pengguna baru telah dicipta - sila <a href="/login">log masuk</a>.'
             success = True
@@ -64,24 +72,29 @@ def help_form(request):
         print('form', form)
         if form.is_valid():
             print("masuk save data")
-            print(form)
-            form.save()
+            #form.save()
+            user = request.user
+            status = form.cleaned_data.get("help_status")
+            subject = form.cleaned_data.get("help_subject")
+            content = form.cleaned_data.get("help_content")
+            helpdesk = Helpdesk.objects.create(help_author = user,help_status=status,help_subject = subject, help_content = content)
+            print(helpdesk)
+            
             #submitting true to the redirect to GET, pass down
-            return HttpResponseRedirect('home/helpdesk?submitted=True')
+            return HttpResponseRedirect('?submitted=True')
         else:
             print('Maklumat tidak sah')
-    #did not fill out the form
+            
+   
     else:
-        form = HelpForm
+        form = HelpForm()
         if 'submitted' in request.GET:
-            print("masuk submitted == True")
             submitted = True
 
-    return render(request, "home/helpdesk.html", {'form': form, 'submitted': submitted})
+    return render(request, "home/helpdesk.html", {'form': form,'submitted': submitted})
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
-    # form_class = PasswordChangeForm
     success_url = reverse_lazy('password_success')
 
 def password_success(request):
